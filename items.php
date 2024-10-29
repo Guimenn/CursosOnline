@@ -24,6 +24,11 @@ function Menu($menuItems)
 </header>';
 }
 
+function cursos()
+{
+    
+}
+
 $menuItems = [
     'Home' => '#home',
     'Cursos' => '#courses',
@@ -36,7 +41,7 @@ Menu($menuItems);
 
 $benefits = [
     [
-        'title' => 'Acesso vitalístico',
+        'title' => 'Acesso vitalício',
         'icon' => 'fas fa-infinity',
         'description' => 'Compre uma vez e tenha acesso ao conteúdo para sempre.'
     ],
@@ -56,6 +61,51 @@ $benefits = [
         'description' => 'Nosso time está disponível para tirar suas dúvidas a qualquer momento.'
     ]
 ];
+
+
+
+$cursos = [
+    [
+        'title' => 'C#',
+        'image' => 'c-sharp.png'
+    ],
+    [
+        'title' => 'Python',
+        'image' => 'python.png'
+    ],
+    [
+        'title' => 'C++',
+        'image' => 'c-.png'
+    ],
+
+
+    [
+        'title' => 'HTML',
+        'image' => 'html.png'
+    ],
+    [
+        'title' => 'JavaScript',
+        'image' => 'js.png'
+    ],
+    [
+        'title' => 'CSS',
+        'image' => 'css-3.png'
+    ],
+    
+    [
+        'title'=> 'Java',   
+        'image' => 'java.png'
+    ],  
+    [
+        'title' => 'PHP',
+        'image' => 'php.png'
+    ],
+    [
+        'title' => 'ruby',
+        'image' => 'ruby.png'
+    ],
+
+    ];
 
 $faqs = [
     [
