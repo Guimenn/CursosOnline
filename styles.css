@@ -66,23 +66,23 @@ body, html {
 /* Estilizando o li */
 .navbar li {
     list-style: none;
-    position: relative;  /* Necessário para posicionar o ::before */
+    position: relative;  
 }
 
-/* Transição suave para o li */
+
 .navbar li a {
     text-decoration: none;
     color: var(--cor4);
     font-weight: 300;
-    display: inline-block;  /* Facilita o controle de pseudo-elementos */
+    display: inline-block; 
     transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 /* Efeito de hover */
 .navbar li:hover a {
     color: var(--cor1);
-    transform: scale(1.15);  /* Leve aumento */
-    text-shadow: 0px 4px 8px rgba(36, 209, 98, 0.6); /* Sombra colorida */
+    transform: scale(1.15); 
+    text-shadow: 0px 4px 8px rgba(36, 209, 98, 0.6); 
 }
 
 /* Efeito sublinhado animado */
@@ -97,9 +97,9 @@ body, html {
     transition: width 0.4s ease-in-out;
 }
 
-/* Animação do sublinhado */
+
 .navbar li:hover::before {
-    width: 100%;  /* Expande o sublinhado da esquerda para a direita */
+    width: 100%;  
 }
 
 
@@ -281,15 +281,14 @@ body, html {
 }
 
 /* Benefícios */
-/* Benefícios */
 .benefits {
     padding: 80px 20px;
-    background-color: var(--cor2); /* Fundo geral da seção */
+    background-color: var(--cor2); 
     text-align: center;
-    border-radius: 10px; /* Bordas arredondadas na seção */
+    border-radius: 10px; 
   }
   
-  /* Título da Seção de Benefícios */
+
   .benefits h2 {
     font-size: 36px;
     color: var(--cor1);
@@ -297,7 +296,7 @@ body, html {
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: fadeIn 0.8s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra no texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
   
   /* Container de Benefícios */
@@ -305,69 +304,69 @@ body, html {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px; /* Espaço entre os cards */
+    gap: 30px;
   }
   
   /* Card de Benefício */
   .benefit-card {
-    background-color: var(--cor3); /* Cor de fundo dos cards */
-    border: none; /* Removendo a borda */
+    background-color: var(--cor3); 
+    border: none; 
     border-radius: 15px;
     margin-top: 10px;
     padding: 30px 20px;
-    width: 320px; /* Largura aumentada para melhor visualização */
+    width: 320px; 
     color: var(--cor4);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
     transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
-    opacity: 0; /* Inicialmente invisível */
-    animation: fadeInUp 0.6s forwards; /* Animação de entrada */
+    opacity: 0; 
+    animation: fadeInUp 0.6s forwards; 
   }
   
-  /* Efeito de Hover */
+  
   .benefit-card:hover {
  
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    background-color: rgba(36, 209, 99, 0.021); /* Leve destaque ao fundo no hover */
-    border-radius: 20px; /* Arredondamento adicional no hover */
+    background-color: rgba(36, 209, 99, 0.021);
+    border-radius: 20px; 
     border: 1px solid var(--cor1);
     transform: scale(1.1);  
   }
   
-  /* Ícone */
+
   .benefit-card i {
     font-size: 60px;
     color: var(--cor1);
     margin-bottom: 15px;
-    transition: transform 0.5s ease, color 0.5s ease; /* Adicionando transição de cor */
+    transition: transform 0.5s ease, color 0.5s ease; 
   }
   
-  /* Efeito de Hover no Ícone */
+ 
   .benefit-card:hover i {
     transform: rotate(360deg) scale(1.1);
-    color: rgba(36, 209, 98, 1); /* Mudando a cor do ícone no hover */
+    color: rgba(36, 209, 98, 1); 
   }
   
-  /* Título do Card */
+
   .benefit-card h3 {
-    margin: 15px 0 10px; /* Margens simplificadas */
+    margin: 15px 0 10px; 
     font-size: 24px;
-    color: var(--cor1); /* Cor do título */
+    color: var(--cor1); 
     text-transform: uppercase;
-    position: relative; /* Posicionamento para efeitos */
+    position: relative;
   }
   
-  /* Sombra no título do card */
+
   .benefit-card h3::after {
     content: '';
     display: block;
     height: 4px;
     width: 50%;
     background: var(--cor1);
-    margin: 10px auto; /* Centralizando a linha */
+    margin: 10px auto;
     border-radius: 5px;
   }
   
-  /* Texto do Card */
+
   .benefit-card p {
     font-size: 18px;
     color: var(--cor4);
@@ -376,7 +375,7 @@ body, html {
     animation: fadeInText 0.6s forwards;
   }
   
-  /* Animações */
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -410,7 +409,7 @@ body, html {
     }
   }
   
-  /* Efeitos de animação adicionais para os cards ao entrar na tela */
+  
   .benefit-card:nth-child(1) {
     animation-delay: 0.1s;
   }
@@ -426,10 +425,6 @@ body, html {
   .benefit-card:nth-child(4) {
     animation-delay: 0.4s;
   }
-  
-
-
-/* FAQ */
 /* FAQ */
 .faq {
     background-color: var(--cor3);
@@ -441,7 +436,7 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
-/* Título e subtítulo da FAQ */
+
 .faq-title {
     text-align: center;
     color: var(--cor1);
@@ -460,7 +455,7 @@ body, html {
     line-height: 1.5;
 }
 
-/* Itens da FAQ */
+
 .faq-item {
     margin-bottom: 25px;
     background-color: var(--cor2);
@@ -468,7 +463,6 @@ body, html {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Questões */
 .faq-question {
     padding: 20px;
     color: var(--cor4);
@@ -482,68 +476,68 @@ body, html {
     transition: border-color 0.3s;
 }
 
-/* Efeito de sombra e mudança de borda ao passar o mouse */
+
 .faq-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Mudança de cor da borda na pergunta ao passar o mouse */
+
 .faq-question:hover {
     border-color: var(--cor1);
 }
 
-/* Ícone de seta */
+
 .faq-icon {
     font-size: 24px;
     transition: transform 0.3s;
 }
 
-/* Respostas das FAQs */
+
 .faq-answer {
-    display: none; /* Inicialmente oculto */
+    display: none; 
     padding: 15px 20px;
     background-color: var(--cor3);
-    border-radius: 0 0 10px 10px; /* Apenas na parte inferior */
+    border-radius: 0 0 10px 10px; 
     border-top: 2px solid var(--cor1);
     transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo do texto da resposta */
+
 .faq-answer p {
     color: var(--cor4);
-    font-size: 18px; /* Aumentar o tamanho da fonte */
-    line-height: 1.6; /* Melhorar a legibilidade */
-    margin: 0; /* Remover margens padrão */
+    font-size: 18px; 
+    line-height: 1.6; 
+    margin: 0;
 }
 
-/* Transição de abertura da resposta */
+
 .faq-answer.show {
     display: block;
     opacity: 1;
-    max-height: 500px; /* Altura máxima para animação */
+    max-height: 500px;
 }
 
 .faq-answer.hide {
     opacity: 0;
-    max-height: 0; /* Altura mínima ao ocultar */
+    max-height: 0;
 }
 
-/* Rotação do ícone ao abrir */
+
 .faq-question.open .faq-icon {
-    transform: rotate(180deg); /* Inverte a seta */
+    transform: rotate(180deg);
 }
 
-/* Efeitos de transição e animação para melhor UX */
+
 .faq-answer.show {
-    animation: fadeIn 0.4s forwards; /* Animação de entrada */
+    animation: fadeIn 0.4s forwards;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px); /* Animação suave de entrada */
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -551,7 +545,6 @@ body, html {
     }
 }
 
-/* Contato */
 /* Contato */
 .contact {
     background-color: var(--cor3);
@@ -561,21 +554,21 @@ body, html {
     max-width: 800px;
     margin: auto;
     font-family: 'Arial', sans-serif;
-    text-align: center; /* Centralizar o texto */
+    text-align: center; 
 }
 
-/* Título e subtítulo */
+
 .contact h2 {
     color: var(--cor1);
-    font-size: 36px; /* Tamanho maior para o título */
+    font-size: 36px; 
     margin-bottom: 15px;
     font-weight: 700;
 }
 
 .contact p {
     color: var(--cor4);
-    margin-bottom: 30px; /* Espaço entre o parágrafo e o formulário */
-    font-size: 18px; /* Aumentar o tamanho do texto */
+    margin-bottom: 30px; 
+    font-size: 18px; 
 }
 
 /* Formulário */
@@ -584,10 +577,10 @@ body, html {
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Aumentar o espaço entre os campos */
+    gap: 20px; 
 }
 
-/* Campos de entrada */
+
 .contact input,
 .contact textarea {
     padding: 15px;
@@ -595,19 +588,18 @@ body, html {
     border: none;
     background-color: var(--cor2);
     color: var(--cor4);
-    font-size: 16px; /* Aumentar o tamanho da fonte */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Adicionar transição para box-shadow */
-}
+    font-size: 16px; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
 
-/* Efeitos de foco nos campos */
+}
 .contact input:focus,
 .contact textarea:focus {
-    border: 2px solid var(--cor1); /* Destaque ao focar */
+    border: 2px solid var(--cor1); 
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra ao focar */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
 }
 
-/* Botão */
+
 .contact button {
     background-color: var(--cor1);
     color: var(--cor4);
@@ -615,39 +607,127 @@ body, html {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Adicionar transição para sombra */
-    font-size: 18px; /* Aumentar o tamanho da fonte do botão */
-    font-weight: bold; /* Destacar o botão */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; 
+    font-size: 18px;
+    font-weight: bold; 
 }
 
-/* Efeito ao passar o mouse no botão */
+
 .contact button:hover {
     background-color: var(--cor2);
-    transform: scale(1.05); /* Aumento ao passar o mouse */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Feedback do formulário */
+
 .form-feedback {
     color: var(--cor1);
-    margin-top: 20px; /* Espaço acima do feedback */
-    font-size: 16px; /* Tamanho da fonte do feedback */
+    margin-top: 20px; 
+    font-size: 16px; 
 }
 
-/* Rodapé */
 .footer {
-    background-color: var(--cor2);
-    padding: 20px;
+    background-color: var(--cor3); /* Preto profundo */
+    color: var(--cor4); /* Branco */
+    padding: 20px 0;
     text-align: center;
-    color: var(--cor4);
-}
-
-.footer .social-icons a {
-    color: var(--cor4);
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.footer .social-icons a:hover {
-    color: var(--cor1);
-}
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer .col-md-6 {
+    flex-basis: 50%;
+    padding: 10px;
+  }
+  
+  .footer p {
+    margin-bottom: 10px;
+    color: var(--cor4); /* Branco */
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .footer .social-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .footer .social-icons a {
+    margin-left: 10px;
+    color: var(--cor4); /* Branco */
+    transition: color 0.2s ease;
+  }
+  
+  .footer .social-icons a:hover {
+    color: var(--cor1); /* Verde vibrante */
+  }
+  
+  .footer .social-icons i {
+    font-size: 24px;
+    color: var(--cor4); /* Branco */
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .footer ul li a {
+    color: var(--cor4); /* Branco */
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .footer ul li a:hover {
+    color: var(--cor1); /* Verde vibrante */
+  }
+  
+  .footer .copyright {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--cor2); /* Cinza escuro */
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .footer .copyright p {
+    margin-bottom: 10px;
+    color: var(--cor2); /* Cinza escuro */
+  }
+  
+  /* Efeitos de transição */
+  .footer .social-icons a,
+  .footer ul li a {
+    transition: color 0.2s ease;
+  }
+  
+  .footer .social-icons a:hover,
+  .footer ul li a:hover {
+    color: var(--cor1); /* Verde vibrante */
+  }
+  
+  /* Sombra no footer */
+  .footer {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
