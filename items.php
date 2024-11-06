@@ -1,44 +1,49 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $menuItems = [
-    'Home' => '#home',
-    'Cursos' => '#courses',
-    'Benefícios' => '#benefits',
+    'Home' => 'index.php',
+    'Cursos' => 'cursos.php',
+    'Acompanhamento' => '#benefits',
     'FAQ' => '#faq',
     'Contato' => '#contact'
 ];
 
 function Menu($menuItems)
 {
-    echo 
-    '<header class="header">
+    echo
+    '<header>
+    <div class="header">
     <div class="logo">Estudo<span>Mind</span></div>
     <nav class="navbar">
         <ul>';
+
     foreach ($menuItems as $title => $link) {
         echo "<li><a href=\"$link\">$title</a></li>";
     }
+
     echo '</ul>
-    </nav>
-    <button class="btn-login">Login</button>
-</header>';
+    </nav>';
+
+    if (isset($_SESSION['usuario'])) {
+        $usuario = $_SESSION['usuario'];
+        echo "<div class='user-name'>" . ucfirst(strtolower($usuario)) . " <img src='img/user-interface.png' alt='' style='width: 25px; transform: translateY(6px);'>
+    <div class='logout-container'>
+        <a href='logout.php' class='btn-logout'>Logout</a>
+    </div>
+</div>";
+    } else {
+        echo '<div class="btn-container">';
+        echo '<a href="login-teste.php"><button class="btn-login">Login</button></a>';
+        echo '<a href="login-teste.php"><button class="btn-register">Registre-se</button></a>';
+        echo '</div>';
+    }
+
+    echo '</div></header>';
 }
-
-function cursos()
-{
-    
-}
-
-$menuItems = [
-    'Home' => '#home',
-    'Cursos' => '#courses',
-    'Benefícios' => '#benefits',
-    'FAQ' => '#faq',
-    'Contato' => '#contact'
-];
-
-Menu($menuItems);
-
 $benefits = [
     [
         'title' => 'Acesso vitalício',
@@ -67,45 +72,55 @@ $benefits = [
 $cursos = [
     [
         'title' => 'C#',
-        'image' => 'c-sharp.png'
+        'image' => 'c-sharp.png',
+        'description' => 'Aprenda C# do zero ao avançado'
     ],
     [
         'title' => 'Python',
-        'image' => 'python.png'
+        'image' => 'python.png',
+        'description' => 'Aprenda Python do zero ao avançado'
+
     ],
     [
         'title' => 'C++',
-        'image' => 'c-.png'
+        'image' => 'c-.png',
+        'description' => 'Aprenda C++ do zero ao avançado'
     ],
 
 
     [
         'title' => 'HTML',
-        'image' => 'html.png'
+        'image' => 'html.png',
+        'description' => 'Aprenda HTML do zero ao avançado'
     ],
     [
         'title' => 'JavaScript',
-        'image' => 'js.png'
+        'image' => 'js.png',
+        'description' => 'Aprenda JavaScript do zero ao avançado'
     ],
     [
         'title' => 'CSS',
-        'image' => 'css-3.png'
+        'image' => 'css-3.png',
+        'description' => 'Aprenda CSS do zero ao avançado'
     ],
-    
+
     [
-        'title'=> 'Java',   
-        'image' => 'java.png'
-    ],  
+        'title' => 'Java',
+        'image' => 'java.png',
+        'description' => 'Aprenda Java do zero ao avançado'
+    ],
     [
         'title' => 'PHP',
-        'image' => 'php.png'
+        'image' => 'php.png',
+        'description' => 'Aprenda PHP do zero ao avançado'
     ],
     [
         'title' => 'ruby',
-        'image' => 'ruby.png'
+        'image' => 'ruby.png',
+        'description' => 'Aprenda Ruby do zero ao avançado'
     ],
 
-    ];
+];
 
 $faqs = [
     [
@@ -129,6 +144,3 @@ $faqs = [
         'answer' => 'Você pode entrar em contato com nossa equipe de suporte via e-mail ou através dos fóruns de discussão disponíveis na plataforma.'
     ]
 ];
-
-
-?>              

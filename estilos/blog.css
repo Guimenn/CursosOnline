@@ -1,0 +1,96 @@
+
+
+
+
+
+
+
+/* Hero Section */
+.banner {
+    height: 50vh;
+    background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.3), rgba(29, 29, 29, 0.9)), url('Design\ sem\ nome.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--cor4);
+    animation: fadeIn 2s;
+}
+
+.banner h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.banner h1 span {
+    color: var(--cor1);
+}
+
+.banner p {
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: var(--cor1);
+    padding: 15px 30px;
+    border-radius: 25px;
+    border: none;
+    color: var(--cor4);
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor2);
+    transform: translateY(-5px);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--cor4);
+    opacity: 0.8;
+}
+
+.scroll-indicator i {
+    animation: bounce 1.5s infinite;
+    margin-top: 5px;
+    color: var(--cor1);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+
+.blog {
+    width: 50%;
+}
+
+.form {
+    width: 50%;
+}
+
+#blog {
+    display: flex;
+    height: 50px;
+}
+
+

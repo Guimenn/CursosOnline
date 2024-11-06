@@ -28,26 +28,90 @@
 body,
 html {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--cor3);
   color: var(--cor4);
+  background-color: var(--cor3);
   overflow-x: hidden;
   scroll-behavior: smooth;
-
 }
+
+
 
 
 /* Hero Section */
 .hero {
   height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.3), rgba(29, 29, 29, 0.9)), url('Design\ sem\ nome.png');
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
+  background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.3), rgba(29, 29, 29, 0.9)), url(../img/hero-banner.png);
   align-items: center;
   text-align: center;
   color: var(--cor4);
   animation: fadeIn 2s;
+}
+
+
+
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 0%;
+  }
+  50% {
+      background-position: 100% 100%;
+  }
+  100% {
+      background-position: 0% 0%;
+  }
+}
+
+.wave {
+  background: rgb(255 255 255 / 25%);
+  border-radius: 1000% 1000% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 12em;
+  animation: wave 10s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.8;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  animation: wave 18s linear reverse infinite;
+  opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+  bottom: -2.5em;
+  animation: wave 20s -1s reverse infinite;
+  opacity: 0.9;
+}
+
+@keyframes wave {
+  2% {
+      transform: translateX(1);
+  }
+
+  25% {
+      transform: translateX(-25%);
+  }
+
+  50% {
+      transform: translateX(-50%);
+  }
+
+  75% {
+      transform: translateX(-25%);
+  }
+
+  100% {
+      transform: translateX(1);
+  }
 }
 
 .hero h1 {
@@ -57,6 +121,13 @@ html {
 
 .hero h1 span {
   color: var(--cor1);
+  background: linear-gradient(315deg, var(--cor1), #23a553 68%, 
+ #1c5f34 98%);
+  animation: gradient 15s ease infinite;
+  background-size: 400% 400%;
+  background-attachment: fixed;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .hero p {
@@ -345,10 +416,12 @@ html {
 }
 
 /* FAQ */
+
+
 .faq {
-  background-color: var(--cor3);
   padding: 60px 20px;
   border-radius: 12px;
+  background-color: var(--cor3);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: auto;
@@ -469,9 +542,7 @@ html {
 .contact {
   background-color: var(--cor3);
   padding: 80px 20px;
-  border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
   margin: auto;
   font-family: 'Arial', sans-serif;
   text-align: center;
@@ -547,21 +618,6 @@ html {
   font-size: 16px;
 }
 
-/* Footer */
-
-:root {
-  --cor1: #4caf50; /* Verde vibrante */
-  --cor2: #212121; /* Preto suave */
-  --cor3: #f5f5f5; /* Cinza claro */
-  --cor4: #ffffff; /* Branco */
-  --cor-hover: #388e3c; /* Verde escuro */
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .footer {
   width: 100vw;
@@ -678,6 +734,7 @@ html {
   color: var(--cor4);
 }
 
+
 @media (max-width: 768px) {
   .footer .container {
     grid-template-columns: 1fr 1fr;
@@ -702,3 +759,5 @@ html {
     flex-direction: column;
   }
 }
+
+

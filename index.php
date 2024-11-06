@@ -1,4 +1,8 @@
-<?php include 'items.php'; ?>
+<?php if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'items.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,10 +10,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EstudoMind - Transforme sua Carreira</title>
-    <link rel="stylesheet" href="styles.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="items.css">
+    <link rel="stylesheet" href="estilos/styles.css">
+    <link rel="stylesheet" href="estilos/items.css">
+    
 </head>
 
 <body>
@@ -90,25 +96,26 @@
 
     <!-- FAQ -->
     <section class="faq" id="faq">
-        <h2 class="faq-title">Perguntas Frequentes</h2>
-        <p class="faq-subtitle">Tire suas dúvidas rapidamente com nosso FAQ.</p>
-        <?php
-        foreach ($faqs as $faq) {
-            if (isset($faq['question']) && isset($faq['answer'])) {
-                echo '
-                <div class="faq-item">
-                    <h3 class="faq-question" tabindex="0">
-                        ' . $faq['question'] . '
-                        <span class="faq-icon" aria-hidden="true">&#x25BC;</span>
-                    </h3>
-                    <div class="faq-answer">
-                        ' . $faq['answer'] . '
+       
+            <h2 class="faq-title">Perguntas Frequentes</h2>
+            <p class="faq-subtitle">Tire suas dúvidas rapidamente com nosso FAQ.</p>
+            <?php
+            foreach ($faqs as $faq) {
+                if (isset($faq['question']) && isset($faq['answer'])) {
+                    echo '
+                    <div class="faq-item">
+                        <h3 class="faq-question" tabindex="0">
+                            ' . $faq['question'] . '
+                            <span class="faq-icon" aria-hidden="true">&#x25BC;</span>
+                        </h3>
+                        <div class="faq-answer">
+                            ' . $faq['answer'] . '
+                        </div>
                     </div>
-                </div>
-                ';
+                    ';
+                }
             }
-        }
-        ?>
+            ?>
     </section>
 
     <!-- Contato -->
@@ -127,50 +134,54 @@
 
     <!-- Rodapé -->
     <footer class="footer">
-        <div class="container">
-            <div class="section desenvolvedores">
-                <h4>Desenvolvedores</h4>
-                <p>Desenvolvido por <a href="#">EstudoMind</a></p>
-                <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
-            </div>
+  <div class="container">
+    <div class="section desenvolvedores">
+      <h4>Desenvolvedores</h4>
+      <p>Desenvolvido por <a href="#">EstudoMind</a></p>
+      <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+    </div>
 
-            <div class="section contato">
-                <h4>Contato</h4>
-                <p>Telefone: (11) 4002-8922</p>
-                <p>Email: <a href="mailto:contato@estudomind.com.br">contato@estudomind.com.br</a></p>
-            </div>
+    <div class="section contato">
+      <h4>Contato</h4>
+      <p>Telefone: (11) 4002-8922</p>
+      <p>Email: <a href="mailto:contato@estudomind.com.br">contato@estudomind.com.br</a></p>
+    </div>
 
-            <div class="section newsletter">
-                <h4>Newsletter</h4>
-                <p>Receba nossas novidades:</p>
-                <form>
-                    <input type="email" placeholder="Seu e-mail" required>
-                    <button type="submit">Inscrever-se</button>
-                </form>
-            </div>
+    <div class="section newsletter">
+      <h4>Newsletter</h4>
+      <p>Receba nossas novidades:</p>
+      <form>
+        <input type="email" placeholder="Seu e-mail" required>
+        <button type="submit">Inscrever-se</button>
+      </form>
+    </div>
 
-            <div class="section parceiros">
-                <h4>Parceiros</h4>
-                <ul>
-                    <li><a href="#">Guimen</a></li>
-                    <li><a href="#">libre000</a></li>
-                    <li><a href="#">Vini100365</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="section parceiros">
+      <h4>Parceiros</h4>
+      <ul>
+        <li><a href="#">Guimen</a></li>
+        <li><a href="#">libre000</a></li>
+        <li><a href="#">Vini100365</a></li>
+      </ul>
+    </div>
+  </div>
 
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
 
-        <div class="copyright">
-            <p>&copy; 2024 EstudoMind. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
+  <div class="copyright">
+    <p>&copy; 2024 EstudoMind. Todos os direitos reservados.</p>
+  </div>
+</footer>
+<div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+  </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const faqItems = document.querySelectorAll('.faq-item');
