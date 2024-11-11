@@ -32,7 +32,9 @@ $cursos = [
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 5 de 5',
                 'cor' => 'corHTML',
             ]
-        ],
+        ]
+    ],
+    [
         'JavaScript' => [
             'JavaScript MODULO 1 ' => [
                 'image' => 'img-cursos/js.png',
@@ -51,7 +53,9 @@ $cursos = [
                 'cor' => 'corJS',
             ],
             
+        ]
         ],
+        [
         'PHP' => [
             'PHP MODULO 1 ' => [
                 'image' => 'img-cursos/php.png',
@@ -71,7 +75,9 @@ $cursos = [
             ],
 
             
+        ]
         ],
+        [
         'Python' => [
             'Python MODULO 1 ' => [
                 'image' => 'img-cursos/python.png',
@@ -89,7 +95,9 @@ $cursos = [
                 'cor' => 'corPYTHON',
             ],
             
+        ]
         ],
+        [
         'Java' => [
             'Java MODULO 1 ' => [
                 'image' => 'img-cursos/java.png',
@@ -107,7 +115,9 @@ $cursos = [
                 'cor' => 'corJAVA'
             ],
             
+        ]
         ],
+        [
         'ruby' => [
             'Ruby MODULO 1 ' => [
                 'image' => 'img-cursos/ruby.png',
@@ -115,7 +125,7 @@ $cursos = [
                 'cor' => 'corRUBY'
             ],
             'Ruby MODULO 2 ' => [
-                'image' => '/img-cursos/ruby.png',
+                'image' => 'img-cursos/ruby.png',
                 'descricao' => 'RUBY LINGUAGEM',
                 'cor' => 'corRUBY'
             ],
@@ -125,7 +135,9 @@ $cursos = [
                 'cor' => 'corRUBY'
             ],
            
+        ]
         ],
+        [
         'C++' => [
             'C++ MODULO 1 ' => [
                 'image' => 'img-cursos/c-.png',
@@ -144,7 +156,9 @@ $cursos = [
             ],
  
            
+        ]
         ],
+        [
         'C#' => [
             'C# MODULO 1 ' => [
                 'image' => 'img-cursos/c-sharp.png',

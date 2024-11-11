@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="card '. $valoresdosmodulos['cor'] .'">
               <h2>' . $modulodoscursos . '</h2>
               <p>' . $valoresdosmodulos['descricao'] . '</p>
-              <img class="image" src="' . $valoresdosmodulos['image'] . '" alt="" class="'. $valoresdosmodulos['cor'] .'" />
+              <img class="image" src="' . $valoresdosmodulos['image'] . '" alt="" class="'. $det  ['cor'] .'" />
               <button class="button '. $valoresdosmodulos['cor'] .'">Ver curso </button>
             </div>
             ';
