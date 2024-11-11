@@ -1,100 +1,174 @@
 <?php
-
 $cursos = [
     [
-        'Html' => [
-            'modulo1' => [
-                'image' => 'html.png',
-                'description' => 'HTML5 e CSS3'
+        'HTML' => [
+            'HTML MODULO 1 ' => [
+           
+                'image' => 'img-cursos/html.png',
+                'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 1 de 5',
+                'cor' => 'corHTML'
             ],
-            'modulo2' => [
-                'image' => 'html.png',
-                'description' => 'Programação Básica'
+            'HTML MODULO 2 ' => [
+           
+                'image' => 'img-cursos/html.png',
+                'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 2 de 5',
+                'cor' => 'corHTML',
             ],
-            'modulo3' => [
-                'image' => 'html.png',
-                'description' => 'Inteligência '
+            'HTML MODULO 3 ' => [
+             
+                'image' => 'img-cursos/html.png',
+                'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 3 de 5',
+                'cor' => 'corHTML',
             ],
-            'modulo4' => [
-                'image' => 'html.png',
-                'description' => ' Artificial'
+            'HTML MODULO 4 ' => [
+              
+                'image' => 'img-cursos/html.png',
+                'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 4 de 5',
+                'cor' => 'corHTML',
             ],
-            'modulo5' => [
-                'image' => 'html.png',
-                'description' => ' Artiial'
+            'HTML MODULO 5 ' => [
+               
+                'image' => 'img-cursos/html.png',
+                'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 5 de 5',
+                'cor' => 'corHTML',
+            ]
+        ],
+        'JavaScript' => [
+            'JavaScript MODULO 1 ' => [
+                'image' => 'img-cursos/js.png',
+                'descricao' => 'Linguagem JavaScript',
+                'cor' => 'corJS'
+               
+            ],
+            'JavaScript MODULO 2 ' => [
+                'image' => 'img-cursos/js.png',
+                'descricao' => 'Java Básico – Módulo 00',
+                'cor' => 'corJS',
+            ],
+            'JavaScript MODULO 3 ' => [
+                'image' => 'img-cursos/js.png',
+                'descricao' => 'Java POO – Módulo 00',
+                'cor' => 'corJS',
+            ],
+            
+        ],
+        'PHP' => [
+            'PHP MODULO 1 ' => [
+                'image' => 'img-cursos/php.png',
+                'descricao' => 'PHP BÁSICO',
+                'cor' => 'corPHP',
+                
+            ],
+            'PHP MODULO 2 ' => [
+                'image' => 'img-cursos/php.png',
+                'descricao' => 'PHP MODERNO',
+                'cor' => 'corPHP',
+            ],
+            'PHP MODULO 3 ' => [
+                'image' => 'img-cursos/php.png',
+                'descricao' => 'PHP com MySQL ',
+                'cor' => 'corPHP',
+            ],
+
+            
+        ],
+        'Python' => [
+            'Python MODULO 1 ' => [
+                'image' => 'img-cursos/python.png',
+                'descricao' => 'Linguagem PYTHON',
+                'cor' => 'corPYTHON',
+            ],
+            'Python MODULO 2 ' => [
+                'image' => 'img-cursos/python.png',
+                'descricao' => 'PYTHON MUNDO',
+                'cor' => 'corPYTHON',
+            ],
+            'Python MODULO 3 ' => [
+                'image' => 'img-cursos/python.png',
+                'descricao' => 'Linguagem Python 3 – Mundo 03: Estruturas Compostas',
+                'cor' => 'corPYTHON',
+            ],
+            
+        ],
+        'Java' => [
+            'Java MODULO 1 ' => [
+                'image' => 'img-cursos/java.png',
+                'descricao' => 'Programação Orientada',
+                'cor' => 'corJAVA'
+            ],
+            'Java MODULO 2 ' => [
+                'image' => 'img-cursos/java.png',
+                'descricao' => 'Programação Orientada + objetos',
+                'cor' => 'corJAVA'
+            ],
+            'Java MODULO 3 ' => [
+                'image' => 'img-cursos/java.png',
+                'descricao' => 'Programação Orientada + objetos + projetos',
+                'cor' => 'corJAVA'
+            ],
+            
+        ],
+        'ruby' => [
+            'Ruby MODULO 1 ' => [
+                'image' => 'img-cursos/ruby.png',
+                'descricao' => 'RUBY INICIANDO',
+                'cor' => 'corRUBY'
+            ],
+            'Ruby MODULO 2 ' => [
+                'image' => '/img-cursos/ruby.png',
+                'descricao' => 'RUBY LINGUAGEM',
+                'cor' => 'corRUBY'
+            ],
+            'Ruby MODULO 3 ' => [
+                'image' => 'img-cursos/ruby.png',
+                'descricao' => 'RUBY PROGRAMAÇÃO BASICA',
+                'cor' => 'corRUBY'
+            ],
+           
+        ],
+        'C++' => [
+            'C++ MODULO 1 ' => [
+                'image' => 'img-cursos/c-.png',
+                'descricao' => 'Conhecendo a linguagem',
+                'cor' => 'corC'
+            ],
+            'C++ MODULO 2 ' => [
+                'image' => 'img-cursos/c-.png',
+                'descricao' => 'Conhecendo a linguagem e a SLT',
+                'cor' => 'corC'
+            ],
+            'C++ MODULO 3 ' => [
+                'image' => '/img-cursos/c-.png',
+                'descricao' => 'Aprendendo Orientação a Objeticos com C++',
+                'cor' => 'corC'
+            ],
+ 
+           
+        ],
+        'C#' => [
+            'C# MODULO 1 ' => [
+                'image' => 'img-cursos/c-sharp.png',
+                'descricao' => 'DO BASICO AÕ AVANÇADO',
+                'cor' => 'corCS'
+            ],
+            'C# MODULO 2 ' => [
+                'image' => 'img-cursos/c-sharp.png',
+                'descricao' => 'OBJETOS+PROJETOS',
+                'cor' => 'corCS'
+            ],
+            'C# MODULO 3 ' => [
+                'image' => 'img-cursos/c-sharp.png',
+                'descricao' => 'PROGRAMAÇÃO+ALGORITIMOS',
+                'cor' => 'corCS'
+            ],
+            
             ]
         ]
-            ],
-            [
-                'Python' => [
-                    'modulo1' => [
-                        'image' => 'python.png',
-                        'description' => 'python'
-                    ],
-                    'modulo2' => [
-                        'image' => 'html.png',
-                        'description' => 'Programação Básica'
-                    ],
-                    'modulo3' => [
-                        'image' => 'html.png',
-                        'description' => 'Inteligência '
-                    ],
-                    'modulo4' => [
-                        'image' => 'html.png',
-                        'description' => ' Artificial'
-                    ],
-                    'modulo5' => [
-                        'image' => 'html.png',
-                        'description' => ' Artiial'
-                    ]
-                ]
-                    ],
-                    [
-                        'Html3' => [
-                            'modulo1' => [
-                                'image' => 'html.png',
-                                'description' => 'HTML5 e CSS3'
-                            ],
-                            'modulo2' => [
-                                'image' => 'html.png',
-                                'description' => 'Programação Básica'
-                            ],
-                            'modulo3' => [
-                                'image' => 'html.png',
-                                'description' => 'Inteligência '
-                            ],
-                            'modulo4' => [
-                                'image' => 'html.png',
-                                'description' => ' Artificial'
-                            ],
-                            'modulo5' => [
-                                'image' => 'html.png',
-                                'description' => ' Artiial'
-                            ]
-                        ]
-                            ],
-                            [
-                                'Html4' => [
-                                    'modulo1' => [
-                                        'image' => 'html.png',
-                                        'description' => 'HTML5 e CSS3'
-                                    ],
-                                    'modulo2' => [
-                                        'image' => 'html.png',
-                                        'description' => 'Programação Básica'
-                                    ],
-                                    'modulo3' => [
-                                        'image' => 'html.png',
-                                        'description' => 'Inteligência '
-                                    ],
-                                    'modulo4' => [
-                                        'image' => 'html.png',
-                                        'description' => ' Artificial'
-                                    ],
-                                    'modulo5' => [
-                                        'image' => 'html.png',
-                                        'description' => ' Artiial'
-                                    ]
-                                ]
-                                    ],
-];
+    ]
+
+            ;
+
+        $cards = [
+            
+        ]
+?>

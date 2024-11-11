@@ -16,84 +16,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<?php include 'courses.php'; ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="estilos/items.css">
-    <link rel="stylesheet" href="estilos/cursos.css">
-   
+  <title>Card HTML + CSS</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="estilos/cursos.css" />
 </head>
 
 <body>
-    <?php
-    Menu($menuItems);
-    ?>
-    <section id="home" class="banner">
-        <div class="banner-content">
-            <h1>Seus <span>Cursos Online</span> em um Só lugar</h1>
-            <p>Acesse nossos cursos a qualquer hora e de qualquer lugar.</p>
-            <?php
-            $i = 0;
-            foreach ($cursos as $linguagem) {
-                $curso = array_keys($linguagem)[0];
-                echo '<a href="#curso-' . $i . '" class="btn-primary">' . $curso . '</a>';
-                $i++;
-            }
-            ?>
-        </div>
-        <div class="scroll-indicator" aria-label="Scroll down">
-            <span>Scroll</span>
-            <i class="fas fa-arrow-down"></i>
-        </div>
-    </section>
+
+  <main>
     <section>
-        <div class="courses">
-            <h2>Nossos Cursos</h2>
-            <div class="course-list">
-                <?php
-                $i = 0;  // Inicializando o contador para cursos
-
-                foreach ($cursos as $linguagem) {
-                    // Exibe o nome do curso
-                    $cursoNome = array_keys($linguagem)[0];
-                    echo '<h2 class="title-course" id="curso-' . $i . '">' . $cursoNome . '</h2>';
-                    echo '<div class="flex-course-card">';  // Container para os cards de cursos
-                
-                    // Itera pelos módulos do curso
-                    foreach ($linguagem[$cursoNome] as $modulo => $detalhes) {
-                        // Gerando a URL com os parâmetros de curso e módulo
-                        $url = "paginadecursos.php?curso=" . urlencode($cursoNome) . "&modulo=" . urlencode($modulo);
-                
-                        // Exibe o card do módulo
-                        echo '
-                        <div class="course-card">
-                            <img src="img-cursos/' . $detalhes['image'] . '" alt="' . $detalhes['description'] . '" />
-                            <h3>' . $modulo . '</h3>
-                            <p>' . $detalhes['description'] . '</p>
-                            <a href="' . $url . '" class="btn-courses">Ver Curso</a>
-                        </div>';
-                    }
-                
-                    echo '</div>';  // Fecha o container de cursos
-                    $i++;  // Incrementa o contador para o próximo curso
-                }
-                ?>
-
-            </div>
+      <div class="fundo">
+        <div class="titulo">
+          <h1>Nossos cursos</h1>
+     
         </div>
-        </div>
+      </div>
     </section>
-    <?php Footer(); ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
 
+  
+    <div class="neon-border">
+
+
+
+
+      <?php
+      foreach ($cursos as $curso) {
+
+        foreach ($curso as $linguagemdeprogramacao) {
+          echo '<div class="row">';
+          foreach ($linguagemdeprogramacao as $modulodoscursos => $valoresdosmodulos) {
+            echo '
+            <div class="card '. $valoresdosmodulos['cor'] .'">
+              <h2>' . $modulodoscursos . '</h2>
+              <p>' . $valoresdosmodulos['descricao'] . '</p>
+              <img class="image" src="' . $valoresdosmodulos['image'] . '" alt="" class="'. $valoresdosmodulos['cor'] .'" />
+              <button class="button '. $valoresdosmodulos['cor'] .'">Ver curso </button>
+            </div>
+            ';
+          }
+          echo '</div>';
+        }
+      }
+      ?>
+    </div>
+</main>
+</body>
 </html>
