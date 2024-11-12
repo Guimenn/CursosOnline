@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['inscrever'])) {
     if (isset($cursos[$cursoNome][$moduloNome])) {
         // Exibe o módulo e a descrição
         $modulo = $cursos[$cursoNome][$moduloNome];
-        echo '<img src="img-cursos/' . htmlspecialchars($modulo['image']) . '" alt="' . htmlspecialchars($modulo['description']) . '" />';
+        echo '<img src="' . htmlspecialchars($modulo['image']) . '" alt="' . htmlspecialchars($modulo['descricao']) . '" />';
         echo '<p>' . htmlspecialchars($modulo['description']) . '</p>';
     } 
     ?>

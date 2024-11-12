@@ -2,31 +2,31 @@
 $cursos = [
     [
         'HTML' => [
-            'HTML MODULO 1 ' => [
+            'HTML MODULO 1' => [
            
                 'image' => 'img-cursos/html.png',
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 1 de 5',
                 'cor' => 'corHTML'
             ],
-            'HTML MODULO 2 ' => [
+            'HTML MODULO 2' => [
            
                 'image' => 'img-cursos/html.png',
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 2 de 5',
                 'cor' => 'corHTML',
             ],
-            'HTML MODULO 3 ' => [
+            'HTML MODULO 3' => [
              
                 'image' => 'img-cursos/html.png',
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 3 de 5',
                 'cor' => 'corHTML',
             ],
-            'HTML MODULO 4 ' => [
+            'HTML MODULO 4' => [
               
                 'image' => 'img-cursos/html.png',
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 4 de 5',
                 'cor' => 'corHTML',
             ],
-            'HTML MODULO 5 ' => [
+            'HTML MODULO 5' => [
                
                 'image' => 'img-cursos/html.png',
                 'descricao' => 'Desenvolvimento Web 2020 (HTML5+CSS3): Módulo 5 de 5',
@@ -91,7 +91,7 @@ $cursos = [
             ],
             'Python MODULO 3 ' => [
                 'image' => 'img-cursos/python.png',
-                'descricao' => 'Linguagem Python 3 – Mundo 03: Estruturas Compostas',
+                'descricao' => 'Linguagem Python 3',
                 'cor' => 'corPYTHON',
             ],
             
@@ -150,7 +150,7 @@ $cursos = [
                 'cor' => 'corC'
             ],
             'C++ MODULO 3 ' => [
-                'image' => '/img-cursos/c-.png',
+                'image' => 'img-cursos/c-.png',
                 'descricao' => 'Aprendendo Orientação a Objeticos com C++',
                 'cor' => 'corC'
             ],

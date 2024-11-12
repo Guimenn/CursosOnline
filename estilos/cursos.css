@@ -1,9 +1,27 @@
+:root {
+  --cor1: #24D162;
+  /* Verde vibrante */
+  --cor2: #2B2B2B;
+  /* Cinza escuro */
+  --cor3: #1D1D1D;
+  /* Preto profundo */
+  --cor4: #FFFFFF;
+  /* Branco */
+  /* CORES DE TESTE
+    --cor5: #EB5B38;
+    --cor6: #272A2D;
+    --cor7: #E6E4DC;
+    --cor8: #347CCB;
+    */
+}
+
+
+
 html, body {
   font-family: "Poppins", sans-serif;
-  background-color: rgb(0, 0, 0); 
- 
-  overflow: auto; /* Permite rolagem se o conteúdo ultrapassar o tamanho */
-
+  background-color: var(--cor3);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .row {
@@ -14,7 +32,7 @@ html, body {
 }
 
 .titulo {
-  color: white;
+  color: var(--cor4);
   margin: 10px;
   font-weight: 600;
   font-size: 40px;
@@ -25,7 +43,18 @@ html, body {
 }
 
 
-
+.banner {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.3), rgba(29, 29, 29, 0.9)), url(../img/hero-banner.png);
+  align-items: center;
+  text-align: center;
+  color: var(--cor4);
+  animation: fadeIn 2s;
+}
 
 
 
@@ -60,40 +89,13 @@ html, body {
   background-color: rgb(225, 0, 255);
 }
 
-
-
-
-
-
-
-
-
-.corPHP:hover{
-  border: 1px solid blue;
-}
-
-.corHTML:hover{
-  border: 1px solid #ff9900;
-
-}
-.corJS:hover{
-  border: 1px solid #fbff00;
-
-}
-.corPYTHON:hover{
-  border: 1px solid green;
-}
-.corJAVA:hover{
-  border: 1px solid rgba(255, 0, 0, 0.295);
-}
-.corRUBY:hover{
-  border: 1px solid rgb(255, 0, 0);
-}
-.corC:hover{
-  border: 1px solid rgb(0, 174, 255);
-}
-.corCS:hover{
-  border: 1px solid rgb(225, 0, 255);
+.title-course{
+  text-align: center;
+  color: var(--cor4);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 
@@ -108,34 +110,6 @@ html, body {
 
 
 
-
-.corHTML .border {
-  border-left: 2px solid #ff9900;
-} 
-
-.corJS .border {
-  border-left: 2px solid #fbff00;
-}
-
-.corPHP .border {
-  border-left: 2px solid blue;
-}
-
-.corPYTHON .border {
-  border-left: 2px solid green;
-}
-.corJAVA .border{
-  border-left: 2px solid rgba(255, 0, 0, 0.295);
-}
-.corRUBY .border{
-  border-left: 2px solid rgb(255, 0, 0);
-}
-.corC .border{
-  border-left: 2px solid rgb(0, 174, 255);
-}
-.corCS .border{
-  border-left: 2px solid rgb(225, 0, 255);
-}
 
 
 
@@ -159,31 +133,41 @@ html, body {
 
 
 .card {
-  color: white;
-  background:rgba(51, 51, 51, 0.459);
+  color: var(--cor4);
+  background: var(--cor2);
   margin: 10px;
   border-radius: 5px;
+  position: relative;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   padding: 30px;
   margin: 20px;
   width: 400px;
   opacity: 1;
-  
+  transition: all 0.5s ease-in-out;
   overflow: auto; /* Permite rolagem se o conteúdo ultrapassar o tamanho */
 }
 
-.card:hover {
-  transform: scale(-5px);
-  cursor: pointer;
-
-  
+.card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  color: var(--cor4);
 }
+
+.card:hover {
+ transform: perspective(600px) rotateY(5deg) rotateX(5deg) scale(1.1);
+  box-shadow: 7px 7px 13px 0px rgba(168, 168, 168, 0.22);
+}
+
 
 .card:not(:hover) {
   opacity: 0.8;
 }
+
 .card p {
   margin: 10px;
+  margin-bottom: 30px;
   color: #a3a5ae;
   font-size: 16px;
   
@@ -193,7 +177,12 @@ html, body {
 .image {
   float: right;
   max-width: 64px;
+  margin: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   max-height: 64px;
+  background-color: transparent;
 }
 
 
@@ -207,8 +196,9 @@ html, body {
   padding: 15px 30px;
   /* Tamanho do botão */
   font-size: 18px;
+  margin: 15px;
   /* Tamanho da fonte */
-  color: white;
+  color: var(--cor4);
   /* Cor do texto */
 
   /* Cor de fundo laranja */

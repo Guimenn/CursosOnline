@@ -21,13 +21,13 @@ if (!isset($_SESSION['usuario_email'])) {
 <body>
 ';
 
-if (function_exists('Menu') && !empty($menuItems)) {
-    Menu($menuItems);
-} else {
-    echo '<p style="color: red; margin: auto;">Erro ao carregar o menu.</p>';
-}
+    if (function_exists('Menu') && !empty($menuItems)) {
+        Menu($menuItems);
+    } else {
+        echo '<p style="color: red; margin: auto;">Erro ao carregar o menu.</p>';
+    }
 
-echo '<p style="color: red; margin-top: 20%;     display: flex;
+    echo '<p style="color: red; margin-top: 20%;     display: flex;
     justify-content: center">Por favor, faça o login para ver seus acompanhamentos.</p>
     
 </body>
@@ -78,33 +78,31 @@ $acompanhamentos = file($arquivo, FILE_IGNORE_NEW_LINES);
                 <div class="flex-course-card">
                     <?php foreach ($acompanhamentos as $acompanhamento): ?>
                         <div class="course-card">
-                            <!-- Imagem do acompanhamento -->
                             <?php
-
                             foreach ($cursos as $linguagem) {
                                 $curso = array_keys($linguagem)[0];
                                 if (strpos($acompanhamento, $curso) !== false) {
-                                    $imagem = $linguagem[$curso]['modulo1']['image'];
+                                    foreach ($linguagem[$curso] as $moduloKey => $modulo) {
+                                        if (strpos($acompanhamento, $moduloKey) !== false) {
+                                            $imagem = $modulo['image'];
+                                            $descricao = $modulo['descricao'];
+                                            break;
+                                        }
+                                    }
                                     break;
                                 }
                             }
-                            foreach ($cursos as $linguagem) {
-                                $curso = array_keys($linguagem)[0];
-                                if (strpos($acompanhamento, $curso) !== false) {
-                                    $descricao = $linguagem[$curso]['modulo2']['description'];
-                                    break;
-                                }
-                            }
-
                             ?>
-                            <img src="<?php echo "img-cursos/{$imagem}"; ?>" alt="<?php echo $descricao; ?>">
+
+
+                            <img src="<?php echo "{$imagem}"; ?>" alt="<?php echo $descricao; ?>">
                             <h3 class="course-card-title"><?php echo htmlspecialchars($acompanhamento); ?></h3>
                             <a href="acompanhamento.php?curso=<?php echo urlencode($acompanhamento); ?>" class="btn-courses">Ver Acompanhamento</a>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                    <p style="font-size: 2rem; display: flex; justify-content: center; margin-top: 20%;">Você ainda não está inscrito em nenhum curso.</p>
+                <p style="font-size: 2rem; display: flex; justify-content: center; margin-top: 20%;">Você ainda não está inscrito em nenhum curso.</p>
             <?php endif; ?>
         </div>
     </div>
