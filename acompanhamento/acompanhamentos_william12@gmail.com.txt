@@ -1,4 +1,0 @@
-Curso: JavaScript, Módulo: JavaScript MODULO 3 
-Curso: HTML, Módulo: HTML MODULO 2
-Curso: HTML, Módulo: HTML MODULO 1
-Curso: HTML, Módulo: HTML MODULO 3
