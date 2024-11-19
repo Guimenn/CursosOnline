@@ -22,12 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cursos - EstudoMind</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="estilos/items.css">
     <link rel="stylesheet" href="estilos/cursos.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
 </head>
 
@@ -48,17 +49,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
         </div>
-        <div class="scroll-indicator" aria-label="Scroll down">
-            <span>Scroll</span>
-            <i class="fas fa-arrow-down"></i>
-        </div>
+
     </section>
+    <div class="scroll-indicator" aria-label="Scroll down">
+        <span>Scroll</span>
+        <i class="fas fa-arrow-down"></i>
+    </div>
+
     <section>
         <div class="courses">
             <h2>Nossos Cursos</h2>
             <div class="course-list">
                 <?php
-                $i = 0;  // Inicializando o contador para cursos
+                $i = 1;  // Inicializando o contador para cursos
 
                 foreach ($cursos as $linguagem) {
                     // Exibe o nome do curso

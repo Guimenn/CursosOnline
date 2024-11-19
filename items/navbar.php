@@ -6,7 +6,7 @@ $menuItems = [
     'Cursos' => 'cursos.php',
     'Acompanhamento' => 'acompanhamento.php',
     'FAQ' => '#faq',
-    'Contato' => '#contact'
+    'Blog' => 'blog.php'
 ];
 
 function Menu($menuItems)

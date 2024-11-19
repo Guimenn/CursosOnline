@@ -31,3 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.querySelectorAll('.concluir-video').forEach(button => {
+    button.addEventListener('click', () => {
+        setTimeout(() => {
+            window.location.reload();
+        }, 500); // Aguarda o envio do formulário antes de recarregar
+    });
+});

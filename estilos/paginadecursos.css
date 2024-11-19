@@ -76,9 +76,9 @@ main {
 .title-course {
   text-align: center;
   color: var(--cor1);
-  font-size: 36px;
+  font-size: 10px;
   margin: 150px 0px;
-  font-weight: 700;
+  font-weight: 100;
   text-transform: uppercase;
   text-decoration: underline;
   letter-spacing: 1.5px;
@@ -325,3 +325,5 @@ iframe {
   color: #666;
   cursor: not-allowed;
 }
+
+
