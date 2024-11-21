@@ -1,4 +1,30 @@
-
+:root {
+    --cor1: #24D162;
+    /* Verde vibrante */
+    --cor2: #2B2B2B;
+    /* Cinza escuro */
+    --cor3: #1D1D1D;
+    /* Preto profundo */
+    --cor4: #FFFFFF;
+    /* Branco */
+  }
+  
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    background-color: var(--cor3);
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor4);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    min-height: 100vh;
+  
+  }
 
 
 
@@ -81,9 +107,13 @@
 
 
 .blog {
-    width: 50%;
+    padding: 6%;
+    display: block;
+    width: 75%;
 }
-
+.blog h4{
+    color: var(--cor1);
+}
 .form {
     width: 50%;
 }
@@ -92,5 +122,83 @@
     display: flex;
     height: 50px;
 }
+main{ 
+    margin-right: 25%;
+     margin-left: 25%;
+        display: column;
+}
 
+.posts{
+background: rgba(255, 255, 255, 0) ;
+    min-height: 500px;
+    border-left:2px solid #ffffff52;
+    border-right:2px solid #ffffff52;
+    border-radius: 24px;
+   
+   
+    margin-top: 15%;
 
+}
+.post {
+    border: 1px solid #ffffff36;
+    background-color: var(--cor3);
+    padding: 20px;
+margin-top: 15%;
+    border-radius: 35px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.526);
+    height: auto;
+    margin-left: 35%;
+}
+.post p{
+    word-wrap: break-word;   
+    font-size: 1.2rem;
+    color: var(--cor4);
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+form div{
+    justify-items: center;
+}
+
+.add-post form{
+    padding: 12px 20px;
+    box-sizing: border-box;
+
+ 
+  }
+  
+  .caixa_text{
+    width: 70%;
+    border:2px solid #FFFFFF88;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    height: 48px;
+    background-color: #1D1D1D;
+    color: var(--cor4);
+
+  }
+.btn{
+    width: 29%;
+    border: 2px solid white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    height: 48px;
+    background-color: #ffffff;
+    color: black;
+    transform: background-color 0.6s ease;
+    transition: 0.6s;
+  }
+  .btn:hover{
+    background-color: var(--cor2);
+    color: var(--cor4);
+  }
+  footer {
+  margin-top: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}

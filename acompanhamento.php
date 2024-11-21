@@ -16,6 +16,18 @@ if (!isset($_SESSION['usuario_email'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="estilos/acompanhamentos.css">
     <link rel="stylesheet" href="estilos/items.css">
+        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <style>
+    h1 {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        font-weight: normal;
+    }
+    </style>
+
 </head>
 
 <body>
@@ -24,15 +36,16 @@ if (!isset($_SESSION['usuario_email'])) {
     if (function_exists('Menu') && !empty($menuItems)) {
         Menu($menuItems);
     } else {
-        echo '<p style="color: red; margin: auto;">Erro ao carregar o menu.</p>';
+        echo '<h1>Erro ao carregar o menu.</h1>';
     }
 
-    echo '<p style="color: red; margin-top: 20%;     display: flex;
-    justify-content: center">Por favor, faça o login para ver seus acompanhamentos.</p>
+    echo '<h1>Por favor, faça o login para ver seus cursos acompanhados.</h1>
     
 </body>
 </html>
 ';
+    header('Refresh: 3; URL=login-teste.php');
+
     exit;
 }
 
@@ -59,11 +72,12 @@ $acompanhamentos = file($arquivo, FILE_IGNORE_NEW_LINES);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Cursos Acompanhados</title>
+    <title>Acompanhamento - EstudoMind</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="estilos/acompanhamentos.css">
     <link rel="stylesheet" href="estilos/items.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 
 <body>

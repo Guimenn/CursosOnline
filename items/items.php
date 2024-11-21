@@ -9,7 +9,7 @@ $menuItems = [
     'Cursos' => 'cursos.php',
     'Acompanhamento' => 'acompanhamento.php',
     'FAQ' => '#faq',
-    'Contato' => '#contact'
+    'Blog' => 'blog.php'
 ];
 
 function Menu($menuItems)
@@ -45,8 +45,9 @@ function Menu($menuItems)
     echo '</div></header>';
 }
 
-function Footer() {
-    echo'    <footer class="footer">
+function Footer()
+{
+    echo '    <footer class="footer">
   <div class="container">
     <div class="section desenvolvedores">
       <h4>Desenvolvedores</h4>
