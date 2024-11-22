@@ -1,0 +1,49 @@
+:root {
+    --cor1: #24D162;
+    /* Verde vibrante */
+    --cor2: #2B2B2B;
+    /* Cinza escuro */
+    --cor3: #1D1D1D;
+    /* Preto profundo */
+    --cor4: #FFFFFF;
+    /* Branco */
+    /* CORES DE TESTE
+      --cor5: #EB5B38;
+      --cor6: #272A2D;
+      --cor7: #E6E4DC;
+      --cor8: #347CCB;
+      */
+}
+
+/* RESET CSS*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor4);
+    background-color: var(--cor3);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.register_box{
+    border-radius: 24px;
+    background: var(--cor2);
+    display: block;
+    margin: auto;
+    max-width: 400px;
+    justify-items: center;
+    margin-top: 13%;
+}
+
+input{
+    color: var(--cor4);
+    border: 1px solid var(--cor4);
+    border-radius: 24px;
+    width: 100%;
+    height: 24px;
+    background: var(--cor2);
+}

@@ -1,0 +1,127 @@
+:root {
+  --cor1: #24D162;
+  /* Verde vibrante */
+  --cor2: #2B2B2B;
+  /* Cinza escuro */
+  --cor3: #1D1D1D;
+  /* Preto profundo */
+  --cor4: #FFFFFF;
+  /* Branco */
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--cor3);
+  font-family: 'Poppins', sans-serif;
+  color: var(--cor4);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  min-height: 100vh;
+
+}
+
+main {
+  background-color: var(--cor3);
+  color: var(--cor4);
+  min-height: 100vh;
+}
+
+.courses {
+  padding: 80px 20px;
+  background-color: var(--cor3) !important;
+  color: white;
+  height: 100vh;
+}
+
+.courses h2 {
+  font-size: 36px;
+  color: var(--cor1);
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeIn 0.8s;
+  text-align: center;
+}
+
+.course-list {
+  gap: 60px;
+  margin: 0px auto;
+}
+
+.title-course {
+  text-align: center;
+  color: var(--cor1);
+  font-size: 36px;
+  margin: 150px 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 1.5px;
+}
+
+.flex-course-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  animation: fadeIn 0.8s;
+}
+
+.course-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 240px;
+  height: 370px;
+
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #24d1639c;
+}
+
+.course-card img {
+  width: 100%;
+  object-fit: fill;
+  height: 50%;
+}
+
+.course-card h3 {
+  padding: 20px;
+  font-size: 24px;
+  color: var(--cor4);
+}
+
+.course-card p {
+  padding: 0 20px 20px;
+  font-size: 18px;
+  color: var(--cor1);
+}
+
+.btn-courses {
+  display: block;
+  background-color: var(--cor1);
+  color: var(--cor4);
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.sem-curso p {
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+}
