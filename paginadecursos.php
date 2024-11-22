@@ -35,9 +35,6 @@ if (!isset($_SESSION['usuario_email'])) {
 <body>
 ';
 
-    $inscrito = usuarioJaInscrito($cursoNome, $moduloNome);
-
-
     if (function_exists('Menu') && !empty($menuItems)) {
         Menu($menuItems);
     } else {
@@ -54,10 +51,6 @@ if (!isset($_SESSION['usuario_email'])) {
 
 if (!isset($_SESSION['concluido'])) {
     $_SESSION['concluido'] = [];
-}
-
-if (!isset($_SESSION['progress'])) {
-    $_SESSION['progress'] = 0;
 }
 
 
@@ -138,10 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['inscrever'])) {
 
 $moduloAtual = null;
 
-
-$progress = isset($_SESSION['progress']) ? $_SESSION['progress'] : 0;
-$jaConcluido = isset($_SESSION['concluido']) ? $_SESSION['concluido'] : [];
-
 // Itera sobre o array principal para localizar o curso e módulo
 foreach ($cursos as $curso) {
     if (isset($curso[$cursoNome]) && isset($curso[$cursoNome][$moduloNome])) {
@@ -150,45 +139,6 @@ foreach ($cursos as $curso) {
     }
 }
 
-// Verificar se o botão foi clicado
-if (isset($_POST['marcar_concluido'])) {
-    $video_id = $_POST['video_id'];
-
-    // Verifica se o vídeo já foi concluído (na sessão)
-    if (!in_array($video_id, $jaConcluido)) {
-        // Adicionar o ID do vídeo à sessão
-        $jaConcluido[] = $video_id;
-
-        // Atualizar o progresso
-        $progress = isset($jaConcluido) ? $progress : 0;
-        $progress += 20;
-        if (!file_exists($arquivo)) {
-            file_put_contents($arquivo, '');
-        }
-
-        // Se o arquivo for gravável, salva o ID do vídeo
-        if (is_writable($arquivo)) {
-            // Verifica se o ID do vídeo já não está no arquivo para evitar duplicação
-            $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
-            if (!in_array($video_id, $ids_concluidos)) {
-                file_put_contents($arquivo, $video_id . "\n", FILE_APPEND);
-            }
-        } else {
-            echo 'Erro: Não é possível gravar no arquivo.';
-        }
-    }
-}
-
-// Ler IDs concluídos do arquivo
-if (file_exists($arquivo)) {
-    $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
-} else {
-    $ids_concluidos = [];
-}
-
-// Atualizar barra de progresso
-$progress = 0;
-$progress = count($ids_concluidos) * 20;
 ?>
 
 <!DOCTYPE html>
@@ -263,6 +213,9 @@ $progress = count($ids_concluidos) * 20;
             ?>
 
             <!-- Botão de Inscrição -->
+            <?php if ($inscrito): ?>
+
+            <?php else: ?>
 
         </div>
 
@@ -270,7 +223,7 @@ $progress = count($ids_concluidos) * 20;
         <div class="course-info" id="courseInfo">
             <div class="course-status">
                 <span class="info-label">Seu Estado</span>
-                <?php if ($progress == 100) {
+                <?php if ($_SESSION['progress'] == 100) {
                     echo '    <div style="margin-top: 20px; text-align: center;">
                         <form method="POST" action="emitir_certificado.php">
                             <button type="submit" class="emitir-certificado">
@@ -280,7 +233,7 @@ $progress = count($ids_concluidos) * 20;
                     </div>
                     ';
                 } else {
-                    echo isset($jaConcluido) ? '<span class="status-label" id="statusLabel">' . $progress . '%</span>' : '';
+                    echo isset($_SESSION['progress']) ? '<span class="status-label" id="statusLabel">' . $_SESSION['progress'] . '%</span>' : '';
                 }
                 ?>
 
@@ -304,46 +257,83 @@ $progress = count($ids_concluidos) * 20;
             </div>
         </div>
 
+    <?php endif ?>
+    <!-- Seção de vídeos -->
+    <?php
 
-        <!-- Seção de vídeos -->
-        <?php
 
+    // Verificar se o botão foi clicado
+    if (isset($_POST['marcar_concluido'])) {
+        $video_id = $_POST['video_id'];
 
+        // Verifica se o vídeo já foi concluído (na sessão)
+        if (!in_array($video_id, $_SESSION['concluido'])) {
+            // Adicionar o ID do vídeo à sessão
+            $_SESSION['concluido'][] = $video_id;
 
-        foreach ($ids_concluidos as $id_concluido) {
-            if (in_array($id_concluido, $_SESSION['concluido'])) {
-                $progress += 20; // Incrementa 25% para cada vídeo concluído
+            // Atualizar o progresso
+            $progress = isset($_SESSION['progress']) ? $_SESSION['progress'] : 0;
+            $progress += 20;
+            if (!file_exists($arquivo)) {
+                file_put_contents($arquivo, '');
+            }
+
+            // Se o arquivo for gravável, salva o ID do vídeo
+            if (is_writable($arquivo)) {
+                // Verifica se o ID do vídeo já não está no arquivo para evitar duplicação
+                $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
+                if (!in_array($video_id, $ids_concluidos)) {
+                    file_put_contents($arquivo, $video_id . "\n", FILE_APPEND);
+                }
+            } else {
+                echo 'Erro: Não é possível gravar no arquivo.';
             }
         }
-       
+    }
 
-        // Verificar se o usuário está inscrito e exibir a barra de progresso apenas se estiver
-        if (usuarioJaInscrito($cursoNome, $moduloNome)) {
-            // Exibir a barra de progresso apenas se o usuário estiver inscrito
-            if (isset($progress)) {
-                echo '<div class="progress-bar" style="display: block;">
-                <div class="progress-bar-inner" style="width: ' . $progress . '%;"><span>' . $progress . '%</span></div>
+    // Ler IDs concluídos do arquivo
+    if (file_exists($arquivo)) {
+        $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
+    } else {
+        $ids_concluidos = [];
+    }
+
+    // Atualizar barra de progresso
+    $progress = 0;
+    foreach ($ids_concluidos as $id_concluido) {
+        if (in_array($id_concluido, $_SESSION['concluido'])) {
+            $progress += 20; // Incrementa 25% para cada vídeo concluído
+        }
+    }
+    $_SESSION['progress'] = count($ids_concluidos) * 20;
+
+    // Verificar se o usuário está inscrito e exibir a barra de progresso apenas se estiver
+    if (usuarioJaInscrito($cursoNome, $moduloNome)) {
+        // Exibir a barra de progresso apenas se o usuário estiver inscrito
+        if (isset($_SESSION['progress'])) {
+            echo '<div class="progress-bar" style="display: block;">
+                <div class="progress-bar-inner" style="width: ' . $_SESSION['progress'] . '%;"><span>' . $_SESSION['progress'] . '%</span></div>
               </div>';
-            }
-        } else {
-            // Se o usuário não estiver inscrito, ocultar a barra de progresso
-            echo '<div class="progress-bar" style="display: none;">
+        }
+    } else {
+        // Se o usuário não estiver inscrito, ocultar a barra de progresso
+        echo '<div class="progress-bar" style="display: none;">
             <div class="progress-bar-inner"></div>
           </div>';
-        }
-        ?>
+    }
+    ?>
 
 
-        <section class="videos" id="videos">
-            <h2 class="video-title"><br><?php echo htmlspecialchars($moduloNome); ?></h2>
-            <?php
-            if ($moduloAtual) {
-                if (!empty($moduloAtual['videos']) && is_array($moduloAtual['videos'])) {
-                    if (usuarioJaInscrito($cursoNome, $moduloNome)) {
-                        foreach ($moduloAtual['videos'] as $video) {
-                            // Verificar se o vídeo já foi concluído
-                            $Concluido = in_array($video['id'], $jaConcluido);
-                            echo '
+    <section class="videos" id="videos">
+        <h2 class="video-title"><br><?php echo htmlspecialchars($moduloNome); ?></h2>
+        <?php
+        if ($moduloAtual) {
+            if (!empty($moduloAtual['videos']) && is_array($moduloAtual['videos'])) {
+                if (usuarioJaInscrito($cursoNome, $moduloNome)) {
+                    foreach ($moduloAtual['videos'] as $video) {
+                        // Verificar se o vídeo já foi concluído
+                        $jaConcluido = in_array($video['id'], $_SESSION['concluido']);
+                        echo '
                         <div class="video-item">
                             <h3 class="video-question">' . htmlspecialchars($video['titulo']) . '
                             <span class="faq-icon" aria-hidden="true">&#x25BC;</span></h3>
@@ -352,35 +342,35 @@ $progress = count($ids_concluidos) * 20;
                                 <form method="POST">
                                     <input type="hidden" name="video_id" value="' . $video['id'] . '">';
 
-                            // Lógica para o botão
-                            if ($Concluido) {
-                                // Se o vídeo já foi concluído, desabilitar o botão
-                                echo '<button type="submit" name="marcar_concluido" class="concluir-video" style="background-color: red;" disabled>
+                        // Lógica para o botão
+                        if ($jaConcluido) {
+                            // Se o vídeo já foi concluído, desabilitar o botão
+                            echo '<button type="submit" name="marcar_concluido" class="concluir-video" style="background-color: red;" disabled>
                                     Já Concluído
                                   </button>';
-                            } else {
-                                // Se o vídeo ainda não foi concluído, o botão é clicável
-                                echo '<button type="submit" name="marcar_concluido" class="concluir-video" style="background-color: green;">
+                        } else {
+                            // Se o vídeo ainda não foi concluído, o botão é clicável
+                            echo '<button type="submit" name="marcar_concluido" class="concluir-video" style="background-color: green;">
                                     Concluído
                                   </button>';
-                            }
+                        }
 
-                            echo '
+                        echo '
                                 </form>
                             </div>
                         </div>';
-                        }
-                    } else {
-                        echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Você precisa se inscrever para acessar os vídeos.</p>';
                     }
                 } else {
-                    echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Nenhum vídeo encontrado para este módulo.</p>';
+                    echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Você precisa se inscrever para acessar os vídeos.</p>';
                 }
             } else {
-                echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Curso ou módulo não encontrado!</p>';
+                echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Nenhum vídeo encontrado para este módulo.</p>';
             }
-            ?>
-        </section>
+        } else {
+            echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Curso ou módulo não encontrado!</p>';
+        }
+        ?>
+    </section>
 
 
 
