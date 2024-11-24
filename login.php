@@ -1,39 +1,60 @@
 <?php
+// Inicia a sessão para gerenciar os dados do usuário
 session_start();
+
+// Inclui o arquivo que contém a função para gerar o menu da barra de navegação
 include "items/navbar.php";
+
+/**
+ * Função para autenticar o usuário com base em email e senha
+ * 
+ * @param string $email Email fornecido pelo usuário
+ * @param string $senha Senha fornecida pelo usuário
+ * @return mixed Retorna o nome do usuário em caso de sucesso ou false se falhar
+ */
 function autenticarUsuario($email, $senha)
 {
-    $arquivo = 'usuarios.txt';
+    $arquivo = 'usuarios.txt'; // Nome do arquivo que armazena os dados dos usuários
+    
+    // Abre o arquivo em modo de leitura
     if ($handle = fopen($arquivo, 'r')) {
+        // Percorre cada linha do arquivo
         while (($linha = fgets($handle)) !== false) {
+            // Divide os dados do arquivo em um array com base no delimitador '|'
             $dados = explode('|', trim($linha));
-            if (count($dados) === 3) { // Certifique-se de que a linha contém 3 elementos
-                list($nome, $emailArquivo, $senhaArquivo) = $dados;
+            if (count($dados) === 3) { // Garante que a linha tenha exatamente 3 elementos
+                list($nome, $emailArquivo, $senhaArquivo) = $dados; // Extrai os dados da linha
+                // Verifica se o email e a senha fornecidos correspondem aos dados do arquivo
                 if ($email === $emailArquivo && $senha === $senhaArquivo) {
-                    fclose($handle);
-                    return $nome;
+                    fclose($handle); // Fecha o arquivo
+                    return $nome; // Retorna o nome do usuário autenticado
                 }
             }
         }
-        fclose($handle);
+        fclose($handle); // Fecha o arquivo ao terminar de ler
     }
-    return false;
+    return false; // Retorna false caso não encontre correspondência
 }
 
-
+// Verifica se o formulário foi enviado via POST e o botão de login foi clicado
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email = trim($_POST['email']);
-    $senha = trim($_POST['senha']);
+    $email = trim($_POST['email']); // Remove espaços extras do email
+    $senha = trim($_POST['senha']); // Remove espaços extras da senha
 
+    // Limpa qualquer sessão anterior e inicia uma nova
     session_unset();
     session_destroy();
     session_start();
 
+    // Autentica o usuário com os dados fornecidos
     $nome = autenticarUsuario($email, $senha);
 
     if ($nome) {
+        // Caso a autenticação seja bem-sucedida, armazena os dados do usuário na sessão
         $_SESSION['usuario'] = $nome;
         $_SESSION['usuario_email'] = $email;
+
+        // Exibe mensagem de sucesso usando SweetAlert e redireciona para a página inicial
         echo '
         <!DOCTYPE html>
         <html lang="pt-br">
@@ -67,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         </body>
         </html>
         ';
-        exit;
+        exit; // Finaliza a execução do script
     } else {
-        // Exibir alerta de erro caso login falhe
+        // Exibe mensagem de erro caso a autenticação falhe
         echo '
         <!DOCTYPE html>
         <html lang="pt-br">
@@ -104,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         </body>
         </html>
         ';
-        exit;
+        exit; // Finaliza a execução do script
     }
 }
 ?>

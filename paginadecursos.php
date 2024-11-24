@@ -244,20 +244,28 @@ $progresso = count($ids_concluidos) * 20;  // O progresso é baseado na quantida
             <div class="course-status">
                 <span class="info-label">Seu Estado</span>
                 <?php
-                // Se o progresso for 100%, exibe o botão para emitir o certificado
-                if ($progresso == 100) {
-                    echo '    <div style="margin-top: 20px; text-align: center;">
-                        <form method="POST" action="emitir_certificado.php">
-                            <button type="submit" class="emitir-certificado">
-                                Emitir Certificado
-                            </button>
-                        </form>
-                    </div>';
+                // Se o certificado já foi emitido
+                if (isset($certificadoEmitido) && $certificadoEmitido) {
+                    echo '<div style="margin-top: 20px; text-align: center;">
+            <span class="status-certificado">CERTIFICADO JÁ EMITIDO</span>
+          </div>';
                 } else {
-                    // Exibe o progresso do usuário (percentual)
-                    echo isset($jaConcluido) ? '<span class="status-label" id="statusLabel">' . $progresso . '%</span>' : '';
+                    // Se o progresso for 100%, exibe o botão para emitir o certificado
+                    if ($progresso == 100) {
+                        echo '<div style="margin-top: 20px; text-align: center;">
+                <form method="GET" action="gerar_certificado.php">
+                    <input type="hidden" name="curso" value="' . htmlspecialchars($cursoNome) . '">
+                    <input type="hidden" name="modulo" value="' . htmlspecialchars($moduloNome) . '">
+                    <button type="submit" class="emitir-certificado">Emitir Certificado</button>
+                </form>
+              </div>';
+                    } else {
+                        // Exibe o progresso do usuário (percentual)
+                        echo isset($jaConcluido) ? '<span class="status-label" id="statusLabel">' . $progresso . '%</span>' : '';
+                    }
                 }
                 ?>
+
             </div>
             <div class="divider"></div>
             <div class="course-price">
