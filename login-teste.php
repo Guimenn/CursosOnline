@@ -1,4 +1,5 @@
 <?php
+// Inclui o arquivo que contém a função para gerar o menu de navegação
 include 'items/items.php';
 ?>
 <!DOCTYPE html>
@@ -10,49 +11,53 @@ include 'items/items.php';
 	<title>
 		Login - EstudoMind
 	</title>
+	<!-- Fontes e ícones -->
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- Estilos personalizados -->
 	<link rel="stylesheet" href="estilos/login-teste.css">
 	<link rel="stylesheet" href="estilos/items.css">
+	<!-- Favicon -->
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 
 <body>
 	<?php
+	// Exibe o menu de navegação
 	Menu($menuItems);
 	?>
 
 	<main>
 		<div class="container" id="container">
+			<!-- Formulário de Registro -->
 			<div class="form-container sign-up-container">
 				<form action="registro.php" method="post" autocomplete="off" id="register">
 					<h1>Criar uma Conta</h1>
 					<span>Cadastre-se agora com seu e-mail!</span>
 					<div class="user-box">
-						<input type="text" name="nome" required="">
+						<input type="text" name="nome" required>
 						<label>Primeiro Nome</label>
 					</div>
 					<div class="user-box">
-						<input type="text" name="email" required="">
+						<input type="text" name="email" required>
 						<label>Email</label>
 					</div>
 					<div class="user-box">
-						<input type="password" name="senha" required="">
+						<input type="password" name="senha" required>
 						<label>Senha</label>
 					</div>
 					<div class="user-box">
-						<input type="password" name="cnfsenha" required="">
+						<input type="password" name="cnfsenha" required>
 						<label>Confirmar Senha</label>
 					</div>
 					<button type="submit" name="registro" class="btnn-register">Registre-se</button>
 				</form>
-
 			</div>
+
+			<!-- Formulário de Login -->
 			<div class="form-container sign-in-container">
 				<form action="login.php" autocomplete="off" id="login" method="post">
 					<h1>Login</h1>
-					<div class="social-container">
-					</div>
 					<span>Acesse com sua conta</span>
 					<div class="user-box">
 						<input type="email" name="email" required>
@@ -66,6 +71,8 @@ include 'items/items.php';
 					<button type="submit" name="login" class="btnn-login">Login</button>
 				</form>
 			</div>
+
+			<!-- Contêiner para os painéis de sobreposição -->
 			<div class="overlay-container">
 				<div class="overlay">
 					<div class="overlay-panel overlay-left">
@@ -82,17 +89,19 @@ include 'items/items.php';
 			</div>
 		</div>
 	</main>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+	<!-- Importação de bibliotecas e scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="js/login-teste.js"></script>
+
 	<script>
-		// Função de verificação de senha
+		// Função para verificar se as senhas correspondem
 		function verificarSenha() {
 			var senha = document.getElementsByName("senha")[0].value;
 			var cnfsenha = document.getElementsByName("cnfsenha")[0].value;
 
 			if (senha !== cnfsenha) {
-				// Exibe um alerta de erro se as senhas não forem iguais
+				// Exibe um alerta de erro caso as senhas não coincidam
 				Swal.fire({
 					icon: "error",
 					title: "Erro de Senha!",
@@ -102,21 +111,18 @@ include 'items/items.php';
 					backdrop: 'rgba(0, 0, 0, 0.6)',
 					color: 'white'
 				});
-
 				return false; // Impede o envio do formulário
-			} else {
-				return true; // Permite o envio do formulário
 			}
+			return true; // Permite o envio do formulário
 		}
 
-		// Adiciona o ouvinte de evento para verificar antes de enviar o formulário
+		// Adiciona o ouvinte de evento para o formulário de registro
 		document.getElementById("register").addEventListener("submit", function(event) {
 			if (!verificarSenha()) {
-				event.preventDefault(); // Impede o envio se as senhas não coincidirem
+				event.preventDefault(); // Impede o envio caso as senhas não coincidam
 			}
 		});
 	</script>
-
 </body>
 
 </html>
