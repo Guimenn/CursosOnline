@@ -207,6 +207,12 @@ if (file_exists($arquivo)) {
 // Atualiza a barra de progresso com base nos vídeos concluídos
 $progress = 0;
 $progresso = count($ids_concluidos) * 20;  // O progresso é baseado na quantidade de vídeos concluídos
+
+$pasta_usuario = "certificados/{$usuario}/{$cursoNome}/";
+$arquivo_certificado = "{$pasta_usuario}{$moduloNome}.txt";
+
+
+
 ?>
 
 
@@ -245,20 +251,21 @@ $progresso = count($ids_concluidos) * 20;  // O progresso é baseado na quantida
                 <span class="info-label">Seu Estado</span>
                 <?php
                 // Se o certificado já foi emitido
-                if (isset($certificadoEmitido) && $certificadoEmitido) {
+                // Verifica se o certificado já foi emitido
+                if (file_exists($arquivo_certificado)) {
                     echo '<div style="margin-top: 20px; text-align: center;">
-            <span class="status-certificado">CERTIFICADO JÁ EMITIDO</span>
-          </div>';
+        <span class="status-certificado">CERTIFICADO JÁ EMITIDO</span>
+    </div>';
                 } else {
                     // Se o progresso for 100%, exibe o botão para emitir o certificado
                     if ($progresso == 100) {
                         echo '<div style="margin-top: 20px; text-align: center;">
-                <form method="GET" action="gerar_certificado.php">
-                    <input type="hidden" name="curso" value="' . htmlspecialchars($cursoNome) . '">
-                    <input type="hidden" name="modulo" value="' . htmlspecialchars($moduloNome) . '">
-                    <button type="submit" class="emitir-certificado">Emitir Certificado</button>
-                </form>
-              </div>';
+            <form method="GET" action="gerar_certificado.php">
+                <input type="hidden" name="curso" value="' . htmlspecialchars($cursoNome) . '">
+                <input type="hidden" name="modulo" value="' . htmlspecialchars($moduloNome) . '">
+                <button type="submit" class="emitir-certificado">Emitir Certificado</button>
+            </form>
+        </div>';
                     } else {
                         // Exibe o progresso do usuário (percentual)
                         echo isset($jaConcluido) ? '<span class="status-label" id="statusLabel">' . $progresso . '%</span>' : '';

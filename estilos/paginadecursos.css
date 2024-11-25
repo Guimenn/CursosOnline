@@ -453,3 +453,10 @@ iframe {
 .baixar-certificado:hover {
   background-color: #45a049;
 }
+
+.status-certificado {
+ background-color: #0038D7;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+}

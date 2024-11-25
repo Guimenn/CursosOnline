@@ -14,15 +14,25 @@ $usuario = $_SESSION['usuario_email']; // Recupera o email do usuário da sessã
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = htmlspecialchars($_POST['nome']); // Nome do estudante
 
+    // Cria o caminho para o arquivo do certificado
+    $pasta_usuario = "certificados/{$usuario}/{$curso}/";
+    $arquivo_certificado = "{$pasta_usuario}{$modulo}.txt";
+
+    // Verifica se o certificado já foi emitido
+    if (file_exists($arquivo_certificado)) {
+        echo "<p>O certificado já foi emitido para o curso <strong>$curso</strong>, módulo <strong>$modulo</strong>.</p>";
+        echo "<a href='javascript:history.back();'>Voltar</a>";
+        exit();
+    }
+
     // Cria a pasta para o usuário, se não existir
-    $pasta_usuario = "certificados/{$usuario}/{$curso}/{$modulo}";
     if (!file_exists($pasta_usuario)) {
-        mkdir($pasta_usuario, 0777, true); // Cria a pasta com permissão total
+        mkdir($pasta_usuario, 0777, true);
     }
 
     // Salva os dados no arquivo de acompanhamento dentro da pasta do usuário
     $dados = "Nome: " . $nome . "\nCurso: " . $curso . "\nMódulo: " . $modulo . "\nData: " . date('d/m/Y') . "\n\n";
-    file_put_contents("{$pasta_usuario}/{$usuario}/{$curso}/{$modulo}.txt", $dados, FILE_APPEND); // Salva o arquivo dentro da pasta do usuário
+    file_put_contents($arquivo_certificado, $dados);
 
     // Renderiza o certificado como HTML
     echo "<!DOCTYPE html>
@@ -107,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button id='imprimir' onclick='window.print();'>Imprimir Certificado</button>
     </body>
     </html>";
-    exit(); // Encerra o script após renderizar o certificado
+    exit();
 }
 ?>
 
