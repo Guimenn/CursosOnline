@@ -1,5 +1,0 @@
-Nome: Lucas barbeirini
-Curso: ruby
-Módulo: Ruby MODULO 1 
-Data: 25/11/2024
-
