@@ -1,0 +1,351 @@
+/* Paleta de Cores */
+:root {
+  --cor1: #24D162;
+  /* Verde vibrante */
+  --cor2: #2B2B2B;
+  /* Cinza escuro */
+  --cor3: #1D1D1D;
+  /* Preto profundo */
+  --cor4: #FFFFFF;
+  /* Branco */
+  /* CORES DE TESTE
+      --cor5: #EB5B38;
+      --cor6: #272A2D;
+      --cor7: #E6E4DC;
+      --cor8: #347CCB;
+      */
+}
+
+/* RESET CSS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: 'Poppins', sans-serif;
+  color: var(--cor4);
+  scroll-behavior: smooth;
+}
+
+/* HEADER */
+
+
+
+.header.scrolled {
+  background-color: var(--cor2);
+}
+
+/*NAVBAR*/
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--cor1);
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  width: 100%;
+  background-color: rgba(43, 43, 43, 0.9);
+  z-index: 1000;
+  transition: background-color 0.5s;
+}
+
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-icon {
+  display: none;
+}
+
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  top: 33px;
+  left: 38%;
+  margin-left: 20px;
+}
+
+.navbar ul>li {
+  list-style: none;
+  position: relative;
+}
+
+
+.navbar ul>li a {
+  text-decoration: none;
+  color: var(--cor4);
+  font-weight: 300;
+  display: inline-block;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.navbar ul>li:hover a {
+  color: var(--cor1);
+  transform: scale(1.15);
+  text-shadow: 0px 4px 8px rgba(36, 209, 98, 0.6);
+}
+
+/* Efeito sublinhado animado */
+.navbar ul>li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: var(--cor1);
+  transition: width 0.4s ease-in-out;
+}
+
+
+.navbar ul>li:hover::before {
+  width: 100%;
+}
+
+
+.logo {
+  color: var(--cor4);
+}
+
+.logo span {
+  color: var(--cor1);
+}
+
+/* Botão Login */
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-login {
+  background-color: var(--cor1);
+  color: var(--cor4);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-login:hover {
+  background-color: var(--cor2);
+  transform: scale(1.1);
+  border: 1px solid var(--cor1);
+}
+
+/* Botão Cadastrar */
+.btn-register {
+  background-color: transparent;
+  color: var(--cor4);
+  padding: 10px 20px;
+  border: 1px solid var(--cor1);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+button>a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-register:hover {
+  background-color: var(--cor1);
+  transform: scale(1.1);
+}
+
+/* BOTAO LOGOUT*/
+
+.user-name {
+  position: relative;
+  display: inline-block;
+}
+
+.user-name img {
+  width: 25px;
+  transform: translateY(6px);
+}
+
+.logout-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+
+}
+
+.user-name:hover .logout-container {
+  display: block;
+}
+
+.btn-logout {
+  color: var(--cor4);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+
+/* Efeito sublinhado animado */
+.btn-logout::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: var(--cor1);
+  transition: width 0.4s ease-in-out;
+}
+
+
+.btn-logout:hover::before {
+  width: 100%;
+}
+
+
+.footer {
+  width: 100vw;
+  background-color: var(--cor2);
+  color: var(--cor4);
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.section h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--cor1);
+}
+
+.section p,
+.section a {
+  font-size: 16px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.section a {
+  color: var(--cor4);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.section a:hover {
+  color: var(--cor1);
+}
+
+.newsletter form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.newsletter input {
+  width: 150px;
+  padding: 15px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  background-color: var(--cor3);
+  /* Cinza claro */
+  color: var(--cor2);
+  /* Preto suave */
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter input:focus {
+  outline: none;
+  border-color: var(--cor1);
+  /* Verde vibrante */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.newsletter button {
+  padding: 15px 25px;
+  border: none;
+  width: 150px;
+  border-radius: 30px;
+  background-color: var(--cor1);
+  /* Verde vibrante */
+  color: var(--cor4);
+  /* Branco */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter button:hover {
+  background-color: var(--cor-hover);
+  /* Verde escuro */
+  opacity: 0.9;
+}
+
+.parceiros ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.parceiros a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  color: var(--cor4);
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--cor1);
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--cor4);
+}
+
+

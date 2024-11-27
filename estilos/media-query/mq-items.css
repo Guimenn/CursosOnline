@@ -1,0 +1,195 @@
+@media screen and (max-width: 1060px) {
+    .navbar {
+        padding: 1.5rem 1rem;
+        height: 74px;
+
+    }
+
+    .nav-item {
+        display: none;
+    }
+
+    .btn-login,
+    .btn-register {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    /* Posicionar o botão de logout fixo abaixo do nome de usuário */
+
+
+    .mobile-menu .user-name {
+        display: flex;
+        flex-direction: column;
+        /* Para manter o nome e o botão de logout um abaixo do outro */
+        align-items: center;
+        gap: 5px;
+        /* Espaço entre o nome e o botão */
+        padding: 10px 0;
+    }
+
+    .mobile-menu .logout-container {
+        display: block;
+        margin-top: 10px;
+        /* Espaço entre o nome e o botão de logout */
+        width: 100%;
+        /* Para o logout ocupar toda a largura disponível */
+        text-align: center;
+        /* Centraliza o botão */
+    }
+
+    .mobile-menu .btn-logout {
+        display: inline-block;
+        background-color: var(--cor1);
+        /* Cor do fundo do botão */
+        color: var(--cor4);
+        /* Cor do texto */
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+
+    .mobile-menu .btn-logout:hover {
+        background-color: var(--cor2);
+        /* Cor de fundo ao passar o mouse */
+    }
+
+
+    .mobile-menu ul {
+        list-style: none;
+
+    }
+
+    .mobile-menu ul>li {
+        list-style: none;
+        position: relative;
+    }
+
+
+    .mobile-menu ul>li a {
+        text-decoration: none;
+        color: var(--cor4);
+        font-weight: 300;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    .mobile-menu ul>li:hover a {
+        color: var(--cor1);
+        transform: scale(1.15);
+        text-shadow: 0px 4px 8px rgba(36, 209, 98, 0.6);
+    }
+
+    /* Efeito sublinhado animado */
+    .mobile-menu ul>li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background-color: var(--cor1);
+        transition: width 0.4s ease-in-out;
+    }
+
+
+    .mobile-menu ul>li:hover::before {
+        width: 100%;
+    }
+
+
+
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+  
+    }
+    .navbar button img {
+        width: 30px;
+    }
+
+    .mobile-menu {
+        background-color: var(--cor2);
+    }
+
+   
+
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .mobile-menu .nav-item {
+        display: block;
+        padding: 1.2rem;
+    }
+
+    .mobile-menu .btn-login,
+    .mobile-menu .btn-register,
+    .mobile-menu .user-name {
+        display: block;
+        padding: 1rem 2rem;
+        text-align: center;
+
+    }
+
+    .btn-container {
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        
+    }
+    .btn-container > a {
+        text-decoration: none;
+    }
+
+    .mobile-menu .btn-login button,
+    .mobile-menu .btn-register button {
+        width: 100%;
+    }
+
+
+
+    .open {
+        display: block;
+        height: 400px;
+    }
+
+    .footer .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .newsletter form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .newsletter input {
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .footer .container {
+        grid-template-columns: 1fr;
+    }
+
+    .social-icons {
+        flex-direction: column;
+    }
+}
