@@ -1,2 +1,0 @@
-Noticia nova|adorei o curso de php|SP-São Paulo|Guilherme
-Noticia novaaaa|curso de ruby é um lixo|RJ-Niterói|Guilherme
