@@ -1,234 +1,225 @@
 <?php
-session_start();  // Inicia a sessão para manter as informações entre páginas
-
-// Inclui os arquivos necessários para o funcionamento do site
-include 'items/courses.php';  // Inclui a lista de cursos.
-include 'items/footer.php';  // Inclui o rodapé.
-include 'items/navbar.php';  // Inclui a barra de navegação.
-
-// Verifica se o usuário está logado, verificando a sessão
-if (!isset($_SESSION['usuario_email'])) {
-    echo '
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Cursos Acompanhados</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="estilos/acompanhamentos.css">
-    <link rel="stylesheet" href="estilos/items.css">
-      <link rel="stylesheet" href="estilos/media-query/mq-items.css">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <style>
-    h1 {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh;
-        font-weight: normal;
-    }
-    </style>
-</head>
-<body>
-';
-
-
-    // Verifica se a função Menu existe e se o menu foi carregado
-    if (function_exists('Menu') && !empty($menuItems)) {
-        Menu($menuItems);
-    } else {
-        echo '<h1>Erro ao carregar o menu.</h1>';
-    }
-
-    // Exibe uma mensagem pedindo para o usuário fazer login e redireciona para a página de login após 3 segundos
-    echo '<h1>Por favor, faça o login para se inscrever.</h1>
-        <script src="js/menu.js"></script>
-</body>
-</html>
-';
-    header('Refresh: 3; URL=login-teste.php');  // Redireciona para o login após 3 segundos
-    exit;
-}
-
-// Inicializa a sessão para armazenar os cursos concluídos e o progresso
-if (!isset($_SESSION['concluido'])) {
-    $_SESSION['concluido'] = [];
-}
-
-if (!isset($_SESSION['progress'])) {
-    $_SESSION['progress'] = 0;
-}
-
-// Recupera o email do usuário logado
-$usuario = $_SESSION['usuario_email'];
-
-// Função que verifica se o usuário já está inscrito no curso e módulo
-$inscrito = usuarioJaInscrito($cursoNome, $moduloNome);
-
-// Recupera o curso e módulo a partir dos parâmetros na URL (GET)
-$cursoNome = isset($_GET['curso']) ? $_GET['curso'] : null;
-$moduloNome = isset($_GET['modulo']) ? $_GET['modulo'] : null;
-
-// Verifica se o curso e o módulo foram passados na URL
-if (!$cursoNome || !$moduloNome) {
-    echo '<h2>Curso ou Módulo não encontrado!</h2>';
-    exit;
-}
-
-// Diretório completo para o arquivo
-$diretorio = "concluidos/concluidos_{$usuario}";
-
-if (!is_dir($diretorio)) {
-    if (!mkdir($diretorio, 0755, true)) {
-        echo 'Erro ao criar a pasta.';
-    } else {
-        echo 'Pasta criada com sucesso.';
-    }
-}
-
-// Caminho completo do arquivo
-$arquivo = $diretorio . "/{$cursoNome}_{$moduloNome}.txt";
-
-// Cria o diretório "acompanhamento" se não existir
-if (!is_dir('acompanhamento')) {
-    mkdir('acompanhamento', 0777, true);
-}
-
-// Cria o arquivo de acompanhamento, caso não exista
-if (!file_exists($arquivo)) {
-    file_put_contents($arquivo, '');
-}
-
-// Verifica se o curso e o módulo existem nos dados
-$cursoValido = false;
-$moduloValido = false;
-
-// Itera sobre os cursos para verificar se o curso e módulo existem
-foreach ($cursos as $curso) {
-    if (array_key_exists($cursoNome, $curso)) {
-        $cursoValido = true;
-        if (array_key_exists($moduloNome, $curso[$cursoNome])) {
-            $moduloValido = true;
+    session_start(); // Inicia a sessão para manter informações do usuário entre as páginas
+ 
+    // Inclui arquivos necessários
+    include 'items/courses.php';
+    include 'items/footer.php';
+    include 'items/navbar.php';
+ 
+    // Inicializa variáveis com valores padrões
+    $cursoNome = filter_input(INPUT_GET, 'curso', FILTER_SANITIZE_STRING);
+    $moduloNome = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
+ 
+    // Verifica se o usuário está logado, verificando a sessão
+    if (!isset($_SESSION['usuario_email'])) {
+        echo '
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meus Cursos Acompanhados</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="estilos/acompanhamentos.css">
+        <link rel="stylesheet" href="estilos/items.css">
+        <link rel="stylesheet" href="estilos/media-query/mq-items.css">
+        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+        <style>
+        h1 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            font-weight: normal;
         }
-    }
-}
-
-// Se o curso ou módulo não forem encontrados, exibe um erro
-if (!$cursoValido || !$moduloValido) {
-    echo '<h2>Curso ou Módulo não encontrado!</h2>';
-    exit;
-}
-
-// Função para salvar a inscrição do usuário no arquivo
-function inscreverNoCurso($curso, $modulo)
-{
-    $usuario = $_SESSION['usuario_email'];  // Recupera o usuário logado
-    $arquivo = "acompanhamento/acompanhamentos_{$usuario}.txt";  // Arquivo de acompanhamento por usuário
-
-    file_put_contents($arquivo, "Curso: $curso, Módulo: $modulo\n", FILE_APPEND);  // Adiciona a inscrição ao arquivo
-}
-
-// Função para verificar se o usuário já está inscrito no curso e módulo
-function usuarioJaInscrito($curso, $modulo)
-{
-    $usuario = $_SESSION['usuario_email'];  // Recupera o usuário logado
-    $arquivo = "acompanhamento/acompanhamentos_{$usuario}.txt";  // Arquivo específico por usuário
-    if (file_exists($arquivo)) {
-        $acompanhamentos = file($arquivo, FILE_IGNORE_NEW_LINES);  // Lê os acompanhamentos do arquivo
-        foreach ($acompanhamentos as $acompanhamento) {
-            if (strpos($acompanhamento, "Curso: $curso") !== false && strpos($acompanhamento, "Módulo: $modulo") !== false) {
-                return true;  // Se já está inscrito no curso e módulo, retorna true
-            }
-        }
-    }
-    return false;  // Se não está inscrito, retorna false
-}
-
-// Flag para verificar se o usuário já está inscrito
-$inscrito = false;
-
-// Verifica se o formulário foi enviado para inscrever o usuário
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['inscrever'])) {
-    if (!usuarioJaInscrito($cursoNome, $moduloNome)) {
-        inscreverNoCurso($cursoNome, $moduloNome);  // Inscreve o usuário no curso
-        $inscrito = true;  // Marca como inscrito
-    }
-}
-
-$moduloAtual = null;
-
-// Carregar vídeos concluídos ao abrir a página
-if (file_exists($arquivo)) {
-    $jaConcluido = file($arquivo, FILE_IGNORE_NEW_LINES); // Lê os IDs dos vídeos concluídos do arquivo
-    $_SESSION['concluido'] = $jaConcluido; // Salva na sessão para uso imediato
-}
-
-// Atualizar progresso com base nos vídeos carregados
-$progress = count($jaConcluido) * 20; // Calcula o progresso baseado no total de vídeos concluídos
-$_SESSION['progress'] = $progress; // Atualiza a sessão com o progresso atualizado
-
-
-// Recupera o progresso do usuário da sessão
-$progress = isset($_SESSION['progress']) ? $_SESSION['progress'] : 0;
-$jaConcluido = isset($_SESSION['concluido']) ? $_SESSION['concluido'] : [];
-
-// Itera sobre o array de cursos para encontrar o curso e módulo específicos
-foreach ($cursos as $curso) {
-    if (isset($curso[$cursoNome]) && isset($curso[$cursoNome][$moduloNome])) {
-        $moduloAtual = $curso[$cursoNome][$moduloNome];  // Recupera o módulo atual
-        break;
-    }
-}
-
-// Verifica se o botão "marcar como concluído" foi pressionado
-if (isset($_POST['marcar_concluido'])) {
-    $video_id = $_POST['video_id'];  // Recupera o ID do vídeo
-
-    // Verifica se o vídeo já foi concluído
-    if (!in_array($video_id, $jaConcluido)) {
-        // Adiciona o vídeo aos concluídos
-        $jaConcluido[] = $video_id;
-        $_SESSION['concluido'] = $jaConcluido;  // Salva os vídeos concluídos na sessão
-        $progress += 20;  // Atualiza o progresso (20% por vídeo)
-        $_SESSION['progress'] = $progress;  // Atualiza o progresso na sessão
-
-        // Se o arquivo de acompanhamento não existir, cria
-        if (!file_exists($arquivo)) {
-            file_put_contents($arquivo, '');  // Cria o arquivo se não existir
-        }
-
-        // Verifica se o arquivo é gravável e adiciona o ID do vídeo ao arquivo
-        if (is_writable($arquivo)) {
-            $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);  // Lê os vídeos concluídos
-            if (!in_array($video_id, $ids_concluidos)) {
-                file_put_contents($arquivo, $video_id . "\n", FILE_APPEND);  // Adiciona o ID do vídeo concluído ao arquivo
-            }
+        </style>
+    </head>
+    <body>
+    ';
+ 
+ 
+        // Verifica se a função Menu existe e se o menu foi carregado
+        if (function_exists('Menu') && !empty($menuItems)) {
+            Menu($menuItems);
         } else {
-            echo 'Erro: Não é possível gravar no arquivo.';  // Exibe um erro se o arquivo não for gravável
+            echo '<h1>Erro ao carregar o menu.</h1>';
+        }
+        echo '<h1>Por favor, faça o login para se inscrever.</h1>
+            <script src="js/menu.js"></script>
+    </body>
+    </html>
+    ';
+        header('Refresh: 3; URL=login-teste.php');  // Redireciona para o login após 3 segundos
+        exit;
+    }
+    // Função que verifica se o usuário já está inscrito no curso e módulo
+    $inscrito = usuarioJaInscrito($cursoNome, $moduloNome);
+ 
+    // Inicializa a sessão para armazenar os cursos concluídos e o progresso
+    if (!isset($_SESSION['concluido'])) {
+        $_SESSION['concluido'] = [];
+    }
+ 
+    if (!isset($_SESSION['progress'])) {
+        $_SESSION['progress'] = 0;
+    }
+ 
+    // Recupera o email do usuário logado
+    $usuario = $_SESSION['usuario_email'];
+ 
+    // Recupera o curso e módulo a partir dos parâmetros na URL (GET)
+    $cursoNome = isset($_GET['curso']) ? $_GET['curso'] : null;
+    $moduloNome = isset($_GET['modulo']) ? $_GET['modulo'] : null;
+ 
+    // Verifica se o curso e o módulo foram passados na URL
+    if (!$cursoNome || !$moduloNome) {
+        echo '<h2>Curso ou Módulo não encontrado!</h2>';
+        exit;
+    }
+ 
+    // Diretório completo para o arquivo
+    $diretorio = "concluidos/{$usuario}";
+ 
+    if (!is_dir($diretorio)) {
+        if (!mkdir($diretorio, 0755, true)) {
+            echo 'Erro ao criar a pasta.';
+        } else {
+            echo '';
         }
     }
-}
-
-// Lê os IDs dos vídeos concluídos do arquivo
-if (file_exists($arquivo)) {
-    $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);  // Lê os IDs dos vídeos concluídos
-} else {
-    $ids_concluidos = [];
-}
-
-// Atualiza a barra de progresso com base nos vídeos concluídos
-$progress = 0;
-$progresso = count($ids_concluidos) * 20;  // O progresso é baseado na quantidade de vídeos concluídos
-
-$pasta_usuario = "certificados/{$usuario}/{$cursoNome}/";
-$arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
-
-
-
-?>
+ 
+    // Caminho completo do arquivo
+    $arquivo = $diretorio . "/{$cursoNome}_{$moduloNome}.txt";
+ 
+    // Cria o diretório "acompanhamento" se não existir
+    if (!is_dir('acompanhamento')) {
+        mkdir('acompanhamento', 0777, true);
+    }
+ 
+    // Cria o arquivo de acompanhamento, caso não exista
+    if (!file_exists($arquivo)) {
+        file_put_contents($arquivo, '');
+    }
+ 
+    // Verifica se o curso e o módulo existem nos dados
+    $cursoValido = false;
+    $moduloValido = false;
+ 
+    foreach ($cursos as $curso) {
+        if (array_key_exists($cursoNome, $curso)) {
+            $cursoValido = true;
+            if (array_key_exists($moduloNome, $curso[$cursoNome])) {
+                $moduloValido = true;
+            }
+        }
+    }
+ 
+    // Se o curso ou módulo não forem encontrados, exibe um erro
+    if (!$cursoValido || !$moduloValido) {
+        echo '<h2>Curso ou Módulo não encontrado!</h2>';
+        exit;
+    }
+ 
+    // Função para salvar a inscrição do usuário no arquivo
+    function inscreverNoCurso($curso, $modulo)
+    {
+        $usuario = $_SESSION['usuario_email'];
+        $arquivo = "acompanhamento/{$usuario}.txt";
+        file_put_contents($arquivo, "Curso: $curso, Módulo: $modulo\n", FILE_APPEND);
+    }
+ 
+    // Função para verificar se o usuário já está inscrito no curso e módulo
+    function usuarioJaInscrito($curso, $modulo)
+    {
+        $usuario = $_SESSION['usuario_email'];
+        $arquivo = "acompanhamento/{$usuario}.txt";
+ 
+        if (file_exists($arquivo)) {
+            $acompanhamentos = file($arquivo, FILE_IGNORE_NEW_LINES);
+            foreach ($acompanhamentos as $acompanhamento) {
+                if (strpos($acompanhamento, "Curso: $curso") !== false && strpos($acompanhamento, "Módulo: $modulo") !== false) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+ 
+    // Verifica se o formulário foi enviado para inscrever o usuário
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['inscrever'])) {
+        if (!usuarioJaInscrito($cursoNome, $moduloNome)) {
+            inscreverNoCurso($cursoNome, $moduloNome);
+            $inscrito = true;
+        }
+    }
+ 
+    // Carregar vídeos concluídos ao abrir a página
+    if (file_exists($arquivo)) {
+        $jaConcluido = file($arquivo, FILE_IGNORE_NEW_LINES);
+        $_SESSION['concluido'] = $jaConcluido;
+    }
+ 
+    // Atualizar progresso com base nos vídeos carregados
+    $progress = count($jaConcluido) * 20;
+    $_SESSION['progress'] = $progress;
+ 
+    // Recupera o progresso do usuário da sessão
+    $progress = isset($_SESSION['progress']) ? $_SESSION['progress'] : 0;
+    $jaConcluido = isset($_SESSION['concluido']) ? $_SESSION['concluido'] : [];
+ 
+    // Itera sobre o array de cursos para encontrar o curso e módulo específicos
+    $moduloAtual = null;
+    foreach ($cursos as $curso) {
+        if (isset($curso[$cursoNome]) && isset($curso[$cursoNome][$moduloNome])) {
+            $moduloAtual = $curso[$cursoNome][$moduloNome];
+            break;
+        }
+    }
+ 
+    // Verifica se o botão "marcar como concluído" foi pressionado
+    if (isset($_POST['marcar_concluido'])) {
+        $video_id = $_POST['video_id'];
+ 
+        if (!in_array($video_id, $jaConcluido)) {
+            $jaConcluido[] = $video_id;
+            $_SESSION['concluido'] = $jaConcluido;
+            $progress += 20;
+            $_SESSION['progress'] = $progress;
+ 
+            if (!file_exists($arquivo)) {
+                file_put_contents($arquivo, '');
+            }
+ 
+            if (is_writable($arquivo)) {
+                $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
+                if (!in_array($video_id, $ids_concluidos)) {
+                    file_put_contents($arquivo, $video_id . "\n", FILE_APPEND);
+                }
+            } else {
+                echo 'Erro: Não é possível gravar no arquivo.';
+            }
+        }
+    }
+ 
+    // Lê os IDs dos vídeos concluídos do arquivo
+    if (file_exists($arquivo)) {
+        $ids_concluidos = file($arquivo, FILE_IGNORE_NEW_LINES);
+    } else {
+        $ids_concluidos = [];
+    }
+ 
+    // Atualiza a barra de progresso com base nos vídeos concluídos
+    $progress = 0;
+    $progresso = count($ids_concluidos) * 20;
+ 
+    // Diretório e arquivo para certificados
+    $pasta_usuario = "certificados/{$usuario}/{$cursoNome}/";
+    $arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
+ 
+ 
+    ?>
 
 
 <!DOCTYPE html>
@@ -244,6 +235,7 @@ $arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
     <link rel="stylesheet" href="estilos/paginadecursos.css"> <!-- Estilos específicos da página de cursos -->
     <link rel="stylesheet" href="estilos/items.css"> <!-- Estilos gerais para itens na página -->
     <link rel="stylesheet" href="estilos/media-query/mq-items.css">
+    <link rel="stylesheet" href="estilos/media-query/mq-pgcursos.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"> <!-- Ícone da página -->
 
 </head>
@@ -319,7 +311,6 @@ $arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
         // Verifica se o usuário está inscrito e exibe a barra de progresso
         if (usuarioJaInscrito($cursoNome, $moduloNome)) {
             if (isset($progress)) {
-                // Exibe a barra de progresso com o valor calculado
                 echo '<div class="progress-bar" style="display: block;">
                 <div class="progress-bar-inner" style="width: ' . $progress . '%;"><span>' . $progress . '%</span></div>
               </div>';
@@ -371,7 +362,7 @@ $arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
                         </div>';
                         }
                     } else {
-                        // Se o usuário não estiver inscrito, exibe uma mensagem pedindo para se inscrever
+                        // Caso o usuário não estiver inscrito, exibe uma mensagem pedindo para se inscrever
                         echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Você precisa se inscrever para acessar os vídeos.</p>';
                     }
                 } else {
@@ -379,7 +370,7 @@ $arquivo_certificado = "{$pasta_usuario}{$moduloNome}.png";
                     echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Nenhum vídeo encontrado para este módulo.</p>';
                 }
             } else {
-                // Se o curso ou módulo não for encontrado
+                // Caso o curso ou módulo não for encontrado
                 echo '<p style="text-align: center; margin-top: 20px; font-weight: normal; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); ">Curso ou módulo não encontrado!</p>';
             }
             ?>

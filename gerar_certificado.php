@@ -29,18 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <title>Erro no Login</title>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-            <link rel="stylesheet" href="estilos/acompanhamentos.css">
-            <link rel="stylesheet" href="estilos/items.css">
-            <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+            <style>
+                body {
+                    font-family: "Poppins", sans-serif;
+                }
+            </style>
         </head>
         <body>
-            ';
-        echo '
             <script>
                 Swal.fire({
                     icon: "warning",
-                    title: "O certificado do curso '. $modulo . ' já foi emitido!",
+                    title: "O certificado do curso ' . $modulo . ' já foi emitido!",
                     text: "",
                     confirmButtonText: "Voltar",
                     confirmButtonColor: "#24D162",
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     backdrop: "rgba(0, 0, 0, 0.6)",
                     color: "white"
                 }).then(() => {
-                    window.location.href = "acompanhamento.php"; // Redireciona após o alerta
+                    window.location.href = "acompanhamento.php";
                 });
             </script>
         </body>
@@ -71,16 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imagem = imagecreatetruecolor($largura, $altura);
 
     // Define as cores
-    $cor_fundo = imagecolorallocate($imagem, 255, 255, 255); // Branco
+    $cor_fundo = imagecolorallocate($imagem, 245, 245, 245); // Fundo claro
     $cor_borda = imagecolorallocate($imagem, 0, 0, 0);       // Preto
-    $cor_texto = imagecolorallocate($imagem, 50, 50, 50);    // Cinza Escuro
+    $cor_texto = imagecolorallocate($imagem, 50, 50, 50);     // Cinza Escuro
     $cor_destaque = imagecolorallocate($imagem, 76, 175, 80); // Verde
 
     // Preenche o fundo
     imagefill($imagem, 0, 0, $cor_fundo);
 
     // Adiciona uma borda ao redor do certificado
-    $espessura_borda = 10;
+    $espessura_borda = 15;
     for ($i = 0; $i < $espessura_borda; $i++) {
         imagerectangle($imagem, $i, $i, $largura - $i - 1, $altura - $i - 1, $cor_borda);
     }
@@ -94,8 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         imagettftext($imagem, $tamanho, 0, $x, $y, $cor, $fonte, $texto);
     }
 
-    // Caminho para a fonte (certifique-se de ter esta fonte em sua pasta de trabalho)
+    // Caminho para a fonte
     $fonte = 'C:/Windows/Fonts/arial.ttf';
+    $fonteescrita= 'C:/Windows/Fonts/Mtcorsva.ttf';
 
     // Adiciona os textos centralizados
     centralizar_texto($imagem, "CERTIFICADO DE CONCLUSÃO", $fonte, 36, 100, $cor_destaque);
@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     centralizar_texto($imagem, "Por concluir o curso de:", $fonte, 20, 340, $cor_texto);
     centralizar_texto($imagem, "{$curso} - {$modulo}", $fonte, 24, 400, $cor_destaque);
     centralizar_texto($imagem, "Emitido em: " . date('d/m/Y'), $fonte, 16, 500, $cor_texto);
-    centralizar_texto($imagem, "___________________________", $fonte, 16, 550, $cor_texto);
-    centralizar_texto($imagem, "Assinatura do Responsável", $fonte, 14, 580, $cor_texto);
+    centralizar_texto($imagem, "ESTUDOMIND", $fonteescrita, 30, 550, $cor_texto);
+    centralizar_texto($imagem, "Assinatura digital de EstudoMind", $fonte, 14, 580, $cor_texto);
 
     // Salva a imagem em arquivo
     imagepng($imagem, $arquivo_certificado);
@@ -114,31 +114,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     imagedestroy($imagem);
 
     // Exibe a imagem gerada com opção de download
-    echo "<div style='text-align: center; display: flex; flex-direction: column;'>";
-    echo "<p style='font-size: 18px; font-family: Arial, sans-serif; color: #333;'>Certificado gerado com sucesso!</p>";
-    echo "<img src='{$arquivo_certificado}' alt='Certificado' style='border: 5px solid #4CAF50; max-width: 80%; height: auto; margin: 20px auto;'>";
-
-    echo "<a href='{$arquivo_certificado}' download='certificado.png' style='
-    display: inline-block;
-    padding: 12px 30px;
-    margin: 20px auto;
-    text-decoration: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-'>Baixar Certificado</a>";
-
-    echo "<br><a href='index.php' style='
-        display: inline-block;
-        margin-top: 15px;
-        text-decoration: none;
-        font-size: 16px;
-        color: #4CAF50;
-    '>Voltar</a>";
-    echo "</div>";
+    echo "<!DOCTYPE html>
+    <html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Certificado Gerado</title>
+        <style>
+            body {
+                background-color: #1D1D1D;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Poppins', Arial, sans-serif;
+                color: white;
+                text-align: center;
+                padding: 20px;
+            }
+            img {
+                max-width: 90%;
+                height: auto;
+                margin: 20px 0;
+                border: 5px solid #4CAF50;
+                border-radius: 10px;
+            }
+            a {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 10px;
+                color: #fff;
+                background-color: #24D162;
+                text-decoration: none;
+                font-size: 18px;
+                border-radius: 5px;
+                transition: 0.3s;
+            }
+            a:hover {
+                background-color: #1B8E50;
+                transform: scale(1.05);
+            }
+        </style>
+    </head>
+    <body>
+        <img src='{$arquivo_certificado}' alt='Certificado'>
+        <a href='{$arquivo_certificado}' download='certificado.png'>Baixar Certificado</a>
+        <a href='index.php'>Voltar</a>
+    </body>
+    </html>";
     exit();
 }
 ?>
@@ -153,17 +176,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="estilos/gerar-certificado.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <style>
-       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
     </style>
 </head>
 
 <body>
-    <form method="POST" action="">
-        <h2>Gerar Certificado</h2>
-        <label for="nome">Nome do Estudante:</label>
-        <input type="text" id="nome" name="nome" required><br><br>
-        <button type="submit">Gerar Certificado</button>
-    </form>
+    <div class="container">
+        <form method="POST" action="">
+            <h2>Gerar Certificado</h2>
+            <label for="nome">Nome do Estudante:</label>
+            <input type="text" id="nome" name="nome" required minlength="6" placeholder="Digite seu nome completo" autofocus autocomplete="off"><br><br>
+            <button type="submit">Gerar Certificado</button>
+        </form>
+    </div>
 </body>
 
 </html>

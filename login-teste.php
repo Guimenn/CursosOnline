@@ -11,14 +11,15 @@ include 'items/items.php';
 	<title>
 		Login - EstudoMind
 	</title>
-	<!-- Fontes e ícones -->
+
+	<!-- Importação de fontes do Google e ícones FontAwesome -->
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<!-- Estilos personalizados -->
+	<!-- Importação de estilos principais e de media queries -->
 	<link rel="stylesheet" href="estilos/login-teste.css">
 	<link rel="stylesheet" href="estilos/items.css">
 	<link rel="stylesheet" href="estilos/media-query/mq-items.css">
-	<!-- Favicon -->
+	<!-- Favicon do site -->
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 
@@ -68,7 +69,7 @@ include 'items/items.php';
 						<input type="password" name="senha" required>
 						<label>Senha</label>
 					</div>
-					<a href="#">Esqueceu sua senha?</a>
+					<a href="esqueceusenha.php">Esqueceu sua senha?</a>
 					<button type="submit" name="login" class="btnn-login">Login</button>
 				</form>
 			</div>
@@ -99,9 +100,10 @@ include 'items/items.php';
 	<script>
 		// Função para verificar se as senhas correspondem
 		function verificarSenha() {
-			var senha = document.getElementsByName("senha")[0].value;
-			var cnfsenha = document.getElementsByName("cnfsenha")[0].value;
+			var senha = document.getElementsByName("senha")[0].value; // Obtém a senha
+			var cnfsenha = document.getElementsByName("cnfsenha")[0].value; // Obtém a confirmação da senha
 
+			// Se as senhas não corresponderem
 			if (senha !== cnfsenha) {
 				// Exibe um alerta de erro caso as senhas não coincidam
 				Swal.fire({
@@ -115,13 +117,14 @@ include 'items/items.php';
 				});
 				return false; // Impede o envio do formulário
 			}
-			return true; // Permite o envio do formulário
+			return true; // Permite o envio do formulário se as senhas coincidirem
 		}
 
 		// Adiciona o ouvinte de evento para o formulário de registro
 		document.getElementById("register").addEventListener("submit", function(event) {
+			// Impede o envio do formulário se as senhas não coincidirem
 			if (!verificarSenha()) {
-				event.preventDefault(); // Impede o envio caso as senhas não coincidam
+				event.preventDefault();
 			}
 		});
 	</script>

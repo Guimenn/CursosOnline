@@ -1,3 +1,0 @@
-Curso: Python, Módulo: modulo1
-Curso: Html, Módulo: modulo2
-Curso: Html, Módulo: modulo1

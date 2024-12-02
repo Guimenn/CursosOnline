@@ -38,12 +38,13 @@ main {
   color: white;
 }
 
-.courses h2 {
-  font-size: 36px;
-  color: var(--cor1);
-  margin-bottom: 40px;
+h2 {
+  font-weight: normal;
+  color: var(--cor4);
+  margin: 40px 0px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-size: 2.3rem;
   animation: fadeIn 0.8s;
   text-align: center;
 }
@@ -67,36 +68,54 @@ main {
 .flex-course-card {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 40px;
   animation: fadeIn 0.8s;
+  margin: 20px; 
 }
 
 .course-card {
   border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   width: 240px;
   height: 370px;
+  position: relative;
 
 }
-
 .course-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #24d1639c;
+  transform: scale(1.07); /* Aumenta levemente o tamanho */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Sombra mais pronunciada */
+  background-color: var(--cor2); /* Fundo muda para a cor principal */
+}
+
+.course-card:hover h3,
+.course-card:hover h4 {
+  color: var(--cor4); /* Texto muda para preto profundo no hover */
+}
+
+.course-card:hover img {
+  transform: scale(1.1); /* Leve zoom na imagem */
+  transition: transform 0.3s ease; /* Transição suave */
 }
 
 .course-card img {
-  width: 100%;
   object-fit: fill;
-  height: 50%;
+  width: 80%;
+  margin: auto;
+  display: block;
+  height: 192px;
+  transition: transform 0.3s ease; /* Adiciona transição na imagem */
 }
 
-.course-card h3 {
-  padding: 20px;
+.course-card h3, h4 {
+  margin-top: 10px;
   font-size: 24px;
   color: var(--cor4);
+  text-align: center;
+
 }
 
 .course-card p {
@@ -110,13 +129,27 @@ main {
   background-color: var(--cor1);
   color: var(--cor4);
   padding: 15px 30px;
-  border-radius: 25px;
+  border-radius: 5px;
   border: none;
+  width: 100%;
+  text-align: center;
   text-align: center;
   font-size: 18px;
   cursor: pointer;
   transition: 0.4s;
+  position: absolute;
+  bottom: 0;
+  transition: 0.4s ease-in-out; /* Transição suave no hover */
+
 }
+
+.btn-courses:hover {
+  background-color: #24d163ce; /* Fundo branco */
+  color: var(--cor4); /* Texto na cor principal */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5); /* Sombra leve */
+  transform: translateY(-3px); /* Botão levanta levemente */
+}
+ 
 
 .sem-curso p {
   display: flex;

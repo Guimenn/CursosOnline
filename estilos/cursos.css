@@ -17,7 +17,8 @@
 
 
 
-html, body {
+html,
+body {
   font-family: "Poppins", sans-serif;
   background-color: var(--cor3);
   overflow-x: hidden;
@@ -38,13 +39,15 @@ html, body {
   font-size: 40px;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  background-color: rgb(0, 0, 0); 
-  overflow: auto; /* Permite rolagem se o conteúdo ultrapassar o tamanho */
+  background-color: rgb(0, 0, 0);
+  overflow: auto;
+  /* Permite rolagem se o conteúdo ultrapassar o tamanho */
 }
 
 
 .banner {
-  height: 90vh;
+  font-size: 2.3rem;
+  height: 70vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -62,34 +65,40 @@ html, body {
 
 
 
-.corHTML{
+.corHTML {
   background-color: #ff9900;
 }
 
-.corJS{
+.corJS {
   background-color: yellow;
 
 }
-.corPHP{
+
+.corPHP {
   background-color: blue;
 }
-.corPYTHON{
+
+.corPYTHON {
   background-color: green;
 }
-.corJAVA{
+
+.corJAVA {
   background-color: rgba(255, 0, 0, 0.295);
 }
-.corRUBY{
+
+.corRUBY {
   background-color: rgb(255, 0, 0);
 }
-.corC{
+
+.corC {
   background-color: rgb(0, 174, 255);
 }
-.corCS{
+
+.corCS {
   background-color: rgb(225, 0, 255);
 }
 
-.title-course{
+.title-course {
   text-align: center;
   color: var(--cor4);
   font-size: 3rem;
@@ -108,6 +117,49 @@ html, body {
 
 
 
+.btn-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0px 5px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #007bff;
+  /* Azul primário */
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  /* Azul mais escuro no hover */
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  /* Efeito de elevação */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+  background-color: #004085;
+  /* Azul ainda mais escuro no clique */
+  border-color: #004085;
+  transform: translateY(0);
+  /* Remove o efeito de elevação */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsivo: ajuste em telas pequenas */
+@media (max-width: 576px) {
+  .btn-primary {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
 
 
 
@@ -144,7 +196,8 @@ html, body {
   width: 400px;
   opacity: 1;
   transition: all 0.5s ease-in-out;
-  overflow: auto; /* Permite rolagem se o conteúdo ultrapassar o tamanho */
+  overflow: auto;
+  /* Permite rolagem se o conteúdo ultrapassar o tamanho */
 }
 
 .card h3 {
@@ -156,7 +209,7 @@ html, body {
 }
 
 .card:hover {
- transform: perspective(600px) rotateY(5deg) rotateX(5deg) scale(1.1);
+  transform: perspective(600px) rotateY(5deg) rotateX(5deg) scale(1.1);
   box-shadow: 7px 7px 13px 0px rgba(168, 168, 168, 0.22);
 }
 
@@ -170,7 +223,7 @@ html, body {
   margin-bottom: 30px;
   color: #a3a5ae;
   font-size: 16px;
-  
+
 }
 
 
@@ -226,5 +279,11 @@ html, body {
 .button:focus {
   outline: none;
   box-shadow: 0 0 0 3px white;
-  /* Borda azul quando o botão estiver focado */  }
-  /* Sombra mais forte ao focar */
+  /* Borda azul quando o botão estiver focado */
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    font-size: 16px;
+  }
+}

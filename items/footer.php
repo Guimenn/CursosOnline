@@ -1,5 +1,7 @@
 <?php
 
+// Função para exibir o rodapé (PÁGINAS COM CONFLITOS ENTRE ARRAYS DO ITEMS.PHP)
+
 function Footer() {
     echo'    <footer class="footer">
   <div class="container">
