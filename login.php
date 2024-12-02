@@ -20,14 +20,12 @@ function autenticarUsuario($email, $senha)
     if ($handle = fopen($arquivo, 'r')) {
         // Percorre cada linha do arquivo
         while (($linha = fgets($handle)) !== false) {
-            // Divide os dados do arquivo em um array com base no delimitador '|'
             $dados = explode('|', trim($linha));
-            if (count($dados) === 3) { // Garante que a linha tenha exatamente 3 elementos
-                list($nome, $emailArquivo, $senhaArquivo) = $dados; // Extrai os dados da linha
-                // Verifica se o email e a senha fornecidos correspondem aos dados do arquivo
+            if (count($dados) === 3) { 
+                list($nome, $emailArquivo, $senhaArquivo) = $dados; 
                 if ($email === $emailArquivo && $senha === $senhaArquivo) {
                     fclose($handle); // Fecha o arquivo
-                    return $nome; // Retorna o nome do usuário autenticado
+                    return $nome;
                 }
             }
         }
@@ -38,8 +36,8 @@ function autenticarUsuario($email, $senha)
 
 // Verifica se o formulário foi enviado via POST e o botão de login foi clicado
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email = trim($_POST['email']); // Remove espaços extras do email
-    $senha = trim($_POST['senha']); // Remove espaços extras da senha
+    $email = trim($_POST['email']);
+    $senha = trim($_POST['senha']);
 
     // Limpa qualquer sessão anterior e inicia uma nova
     session_unset();
@@ -71,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
         </head>
         <body>';
-        Menu($menuItems);
+        Menu($menuItems); // Chama a função para exibir o menu de navegação
         echo '
             <script>
                 Swal.fire({
@@ -83,14 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     backdrop: "rgba(0, 0, 0, 0.6)",
                     color: "white"
                 }).then(() => {
-                    window.location.href = "index.php"; // Redireciona após o alerta
+                    window.location.href = "index.php"; // Redireciona para a página inicial após o alerta
                 });
             </script>
              <script src="js/menu.js"></script>
         </body>
         </html>
         ';
-        exit; // Finaliza a execução do script
+        exit;
     } else {
         // Exibe mensagem de erro caso a autenticação falhe
         echo '
@@ -108,9 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
              <link rel="stylesheet" href="estilos/media-query/mq-items.css">
             <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
         </head>
-        <body>
-            ';
-        Menu($menuItems);
+        <body>';
+        Menu($menuItems); // Chama a função para exibir o menu de navegação
         echo '
             <script>
                 Swal.fire({
@@ -122,14 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     backdrop: "rgba(0, 0, 0, 0.6)",
                     color: "white"
                 }).then(() => {
-                    window.location.href = "login-teste.php"; // Redireciona após o alerta
+                    window.location.href = "login-teste.php"; // Redireciona para a página de login após o alerta
                 });
             </script>
                 <script src="js/menu.js"></script>
         </body>
         </html>
         ';
-        exit; // Finaliza a execução do script
+        exit; 
     }
 }
 ?>

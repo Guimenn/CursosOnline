@@ -10,21 +10,24 @@ require_once 'items/items.php';
 <html lang="pt-BR">
 
 <head>
-    <!-- Meta tags essenciais -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EstudoMind - Transforme sua Carreira</title>
 
-    <!-- Importação de fontes e ícones -->
+    <!-- Importação de fontes do Google e ícones FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Importação de estilos principais e de media queries -->
     <link rel="stylesheet" href="estilos/styles.css" media="all">
     <link rel="stylesheet" href="estilos/media-query/mq-index.css">
     <link rel="stylesheet" href="estilos/items.css">
     <link rel="stylesheet" href="estilos/media-query/mq-items.css">
+    <!-- Biblioteca de animação ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Favicon do site -->
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
-    <!-- Fallback de fonte padrão -->
+    <!-- Fallback para a fonte padrão -->
     <style>
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -33,7 +36,7 @@ require_once 'items/items.php';
 </head>
 
 <body>
-    <!-- Menu de navegação dinâmico -->
+    <!-- Inclusão do menu de navegação dinâmico -->
     <?php Menu($menuItems); ?>
 
     <!-- Seção Hero: introdução principal do site -->
@@ -54,7 +57,6 @@ require_once 'items/items.php';
     <section id="features" class="features">
         <h2>Destaques</h2>
         <div class="feature-list">
-            <!-- Cada item representa um destaque -->
             <div class="feature-item">
                 <i class="fas fa-globe"></i>
                 <h3>Acesso Global</h3>
@@ -82,7 +84,7 @@ require_once 'items/items.php';
             foreach ($cursos as $course) {
                 if (isset($course['image']) && isset($course['title'])) {
                     echo '<div class="course-card">';
-                    echo '<img src="img-cursos/' . $course['image'] . '" alt="' . $course['title'] . '">';
+                    echo '<a href="cursos.php"><img src="img-cursos/' . $course['image'] . '" alt="' . $course['title'] . '"></a>';
                     echo '</div>';
                 }
             }
@@ -157,11 +159,32 @@ require_once 'items/items.php';
     </div>
 
     <!-- Script para o comportamento da seção FAQ -->
+    <script>
+        ScrollReveal({
+            duration: 300
+        });
 
+        const elements = ['.faq-item', '.feature-item', '.course-card'];
+        const elementos = ['.feature-item', '.benefits-container'];
+
+        elements.forEach((element) => {
+            ScrollReveal().reveal(element, {
+                duration: 1000,
+                distance: '50px',
+                easing: 'ease-in-out',
+                origin: 'left'
+            });
+        });
+        elementos.forEach((elemento) => {
+            ScrollReveal().reveal(elemento, {
+                duration: 1000,
+                distance: '100px',
+                easing: 'ease-in-out',
+                origin: 'right'
+            });
+        });
+    </script>
     <script src="js/menu.js"></script>
-
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const faqItems = document.querySelectorAll('.faq-item');

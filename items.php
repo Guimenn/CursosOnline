@@ -2,53 +2,56 @@
 
 // Inicia a sessão caso ainda não esteja iniciada
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // Inicia a sessão para permitir o armazenamento de dados entre páginas
 }
 
-// Define os itens do menu
+// Define os itens do menu (links para navegação)
 $menuItems = [
-    'Home' => 'index.php',
-    'Cursos' => 'cursos.php',
-    'Acompanhamento' => 'acompanhamento.php',
-    'FAQ' => '#faq',
-    'Contato' => '#contact'
+    'Home' => 'index.php', // Página inicial
+    'Cursos' => 'cursos.php', // Página de cursos
+    'Acompanhamento' => 'acompanhamento.php', // Página de acompanhamento
+    'FAQ' => '#faq', // Ancoragem para seção FAQ
+    'Contato' => '#contact' // Ancoragem para seção de contato
 ];
 
 // Função para exibir o menu de navegação
 function Menu($menuItems)
 {
     echo '
-    <header style=" height: 74px;">
+    <header style="height: 74px;">
     <div class="header">
         <div class="logo">Estudo<span>Mind</span></div>
         <nav class="navbar">
             <ul class="navbar-list">';
 
+    // Cria a lista de links do menu
     foreach ($menuItems as $title => $link) {
         echo "<li><a href=\"$link\">$title</a></li>";
     }
 
     echo '</ul>
-        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Menu móvel -->
     </nav>';
 
+    // Verifica se o usuário está logado
     if (isset($_SESSION['usuario_email'])) {
-        $usuario = $_SESSION['usuario'];
+        $usuario = $_SESSION['usuario']; // Nome do usuário logado
+        // Exibe nome do usuário com opção de logout
         echo "<div class='user-name'>" . ucfirst(strtolower($usuario)) . " <img src='img/user-interface.png' alt='' style='width: 25px; transform: translateY(6px);'>
         <div class='logout-container'>
-            <a href='logout.php' class='btn-logout'>Logout</a>
+            <a href='logout.php' class='btn-logout'>Logout</a> <!-- Botão de logout -->
         </div>
     </div>";
     } else {
+        // Caso o usuário não esteja logado, exibe as opções de login e registro
         echo '<div class="btn-container">';
         echo '<a href="login-teste.php"><button class="btn-login">Login</button></a>';
         echo '<a href="login-teste.php"><button class="btn-register">Registre-se</button></a>';
         echo '</div>';
     }
 
-    echo '</div></header>';
+    echo '</div></header>'; // Fecha o header
 }
-
 
 // Função para exibir o rodapé
 function Footer()
@@ -69,8 +72,8 @@ function Footer()
       <h4>Newsletter</h4>
       <p>Receba nossas novidades:</p>
       <form>
-        <input type="email" placeholder="Seu e-mail" required>
-        <button type="submit">Inscrever-se</button>
+        <input type="email" placeholder="Seu e-mail" required> <!-- Campo para email -->
+        <button type="submit">Inscrever-se</button> <!-- Botão de inscrição -->
       </form>
     </div>
     <div class="section parceiros">
@@ -82,14 +85,14 @@ function Footer()
       </ul>
     </div>
   </div>
-  <div class="social-icons">
+  <div class="social-icons"> <!-- Ícones de redes sociais -->
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-linkedin-in"></i></a>
     <a href="#"><i class="fab fa-twitter"></i></a>
   </div>
   <div class="copyright">
-    <p>&copy; 2024 EstudoMind. Todos os direitos reservados.</p>
+    <p>&copy; 2024 EstudoMind. Todos os direitos reservados.</p> <!-- Copyright -->
   </div>
 </footer>';
 }
@@ -97,9 +100,9 @@ function Footer()
 // Benefícios apresentados no site
 $benefits = [
     [
-        'title' => 'Acesso vitalício',
-        'icon' => 'fas fa-infinity',
-        'description' => 'Compre uma vez e tenha acesso ao conteúdo para sempre.'
+        'title' => 'Acesso vitalício', // Título do benefício
+        'icon' => 'fas fa-infinity', // Ícone associado
+        'description' => 'Compre uma vez e tenha acesso ao conteúdo para sempre.' // Descrição do benefício
     ],
     [
         'title' => 'Atualizações constantes',
@@ -121,9 +124,9 @@ $benefits = [
 // Lista de cursos disponíveis
 $cursos = [
     [
-        'title' => 'C#',
-        'image' => 'c-sharp.png',
-        'description' => 'Aprenda C# do zero ao avançado'
+        'title' => 'C#', // Nome do curso
+        'image' => 'c-sharp.png', // Imagem do curso
+        'description' => 'Aprenda C# do zero ao avançado' // Descrição do curso
     ],
     [
         'title' => 'Python',
@@ -170,8 +173,8 @@ $cursos = [
 // FAQ com perguntas frequentes
 $faqs = [
     [
-        'question' => 'Como posso acessar o curso depois da compra?',
-        'answer' => 'Após a compra, você receberá um link por e-mail para acessar sua conta e os cursos adquiridos.'
+        'question' => 'Como posso acessar o curso depois da compra?', // Pergunta
+        'answer' => 'Após a compra, você receberá um link por e-mail para acessar sua conta e os cursos adquiridos.' // Resposta
     ],
     [
         'question' => 'Os cursos têm certificado?',

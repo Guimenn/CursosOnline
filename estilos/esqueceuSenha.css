@@ -20,7 +20,9 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
-
+label{
+    font-family: 'Roboto', Arial, sans-serif;
+}
 form {
     display: inline-block;
     padding: 30px;
@@ -34,7 +36,9 @@ form {
     
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.form-container{
+    margin-top: 10%;
+}
 form:hover {
     transform: scale(1.02);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
@@ -49,7 +53,7 @@ h2 {
     font-size: 1.8rem;
 }
 
-input[type="text"] {
+input[type="email"] {
     width: calc(100% - 20px);
     padding: 12px;
     margin: 15px 0;
@@ -63,7 +67,28 @@ input[type="text"] {
     outline: none;
 }
 
-input[type="text"]:focus {
+input[type="email"]:focus {
+    border-color: var(--cor-focus);
+    background-color: #fff;
+    box-shadow: 0 0 8px var(--cor-focus);
+}
+
+
+input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid var(--cor2);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 2px 5px var(--sombras);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="password"]:focus {
     border-color: var(--cor-focus);
     background-color: #fff;
     box-shadow: 0 0 8px var(--cor-focus);

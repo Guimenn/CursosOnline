@@ -1,4 +1,7 @@
 <?php
+
+// Array $cursos que contém informações sobre cursos disponíveis
+
 $cursos = [
     [
         'HTML' => [
